@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.developerhaoz.sleephelper.recyclerview.iOSDialogActivity">
+
+    <Button
+        android:id="@+id/btn_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activity progress"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_dial2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog 2"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_dial3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog 3"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_dial4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="iOS stytle Dialog"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_dial5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog middle out"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_dial6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog bttom out"
+        android:textAllCaps="false"/>
+</LinearLayout>

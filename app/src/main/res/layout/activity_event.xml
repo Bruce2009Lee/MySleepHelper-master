@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.developerhaoz.sleephelper.recyclerview.EventActivity">
+
+    <Button
+        android:id="@+id/btn_inner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="内部类"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_anno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="匿名内部类"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="事件源所在的类"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

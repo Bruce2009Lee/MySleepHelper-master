@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.developerhaoz.sleephelper">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".common.SleepApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeColor">
+
+        <!-- 添加日记 -->
+        <activity
+            android:name=".diary.ui.AddDiaryActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 测试用的 Activity -->
+        <activity android:name=".common.TestActivity" />
+
+        <!-- 修改日记 -->
+        <activity
+            android:name=".diary.ui.UpdateDiaryActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 主界面的 Activity -->
+        <activity android:name=".common.HomeActivity" />
+
+        <!-- 查看图片的播放页面 -->
+
+        <activity android:name=".meizi.ui.DetailActivity" />
+        <activity android:name=".common.view.ActivityTabLayoutMain" />
+        <activity android:name=".common.view.ActivityViewPagerMain" />
+        <activity android:name=".common.view.ActivityViewPagerDemoSec" />
+        <activity android:name=".common.view.ActivityBannerMain" />
+        <activity android:name=".common.view.ActivityTestDemo" />
+        <activity android:name=".test.ActivityDialogMain" />
+        <activity android:name=".test.ActivityDialogTestMain" />
+        <activity android:name=".test.ActivityTestWebViewMain" />
+        <activity android:name=".test.ActivityTestMyWebViewMain" />
+        <activity android:name=".test.JSActivity" />
+        <activity android:name=".test.ActivityTestWebCacheMain" />
+        <activity android:name=".test.ActivityTestSaveToFile" />
+        <activity android:name=".recyclerview.PuRecyclerViewActivity" />
+        <activity android:name=".recyclerview.RecyclerViewMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".recyclerview.LinearRecyclerViewActivity" />
+        <activity android:name=".recyclerview.MixRecyclerViewActivity" />
+        <activity android:name=".recyclerview.CustomDialogActivity" />
+        <activity android:name=".recyclerview.PopupWindowActivity" />
+        <activity android:name=".recyclerview.ContainerActivity" />
+        <activity android:name=".recyclerview.EventActivity" />
+        <activity android:name=".recyclerview.iOSDialogActivity" />
+        <activity android:name=".recyclerview.IntroTestActivity" />
+        <activity android:name=".recyclerview.GlideTestActivity" />
+        <activity android:name=".recyclerview.MP3PlayerActivity" />
+        <activity android:name=".recyclerview.LocalMusicActivity" />
+        <activity android:name=".recyclerview.FavoriteMusicActivity" />
+        <activity android:name=".recyclerview.RecentMusicActivity"></activity>
+    </application>
+
+</manifest>

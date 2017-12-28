@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="updatefun-2.0.6">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/38e1a0200f2f7edc21c53d37f900030ac8db892f/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/38e1a0200f2f7edc21c53d37f900030ac8db892f/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.hugeterry.updatefun/updatefun/2.0.6/7de2e69ffa71a6305cd30b41eea41d34c5a980e9/updatefun-2.0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
