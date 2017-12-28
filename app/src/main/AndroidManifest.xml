@@ -67,7 +67,9 @@
         <activity android:name=".recyclerview.MP3PlayerActivity" />
         <activity android:name=".recyclerview.LocalMusicActivity" />
         <activity android:name=".recyclerview.FavoriteMusicActivity" />
-        <activity android:name=".recyclerview.RecentMusicActivity"></activity>
+        <activity android:name=".recyclerview.RecentMusicActivity" />
+        <activity android:name=".recyclerview.ThemeActivity" />
+        <activity android:name=".recyclerview.BaseActivity"></activity>
     </application>
 
 </manifest>

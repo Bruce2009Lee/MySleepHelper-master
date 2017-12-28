@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MP3PlayerActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Toolbar toolbar;
@@ -27,6 +30,16 @@ public class MP3PlayerActivity extends AppCompatActivity implements View.OnClick
     private NavigationView homeNavigationView;
 
     private DrawerLayout homeDrawerLayout;
+
+    /**
+     * 模拟请求后得到的数据
+     */
+    List<Info> mList = new ArrayList<>();
+
+    /**
+     * 轮播图
+     */
+    CycleViewPager mCycleViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +50,15 @@ public class MP3PlayerActivity extends AppCompatActivity implements View.OnClick
         setSupportActionBar(toolbar);
         translucentStatusBar();
 
-
+        initData();
         initView();
+    }
+
+    public void initData(){
+        mList.add(new Info("标题1", "http://img2.3lian.com/2014/c7/25/d/40.jpg"));
+        mList.add(new Info("标题2", "http://img2.3lian.com/2014/c7/25/d/41.jpg"));
+        mList.add(new Info("标题3", "http://imgsrc.baidu.com/forum/pic/item/b64543a98226cffc8872e00cb9014a90f603ea30.jpg"));
+        mList.add(new Info("标题4", "http://imgsrc.baidu.com/forum/pic/item/261bee0a19d8bc3e6db92913828ba61eaad345d4.jpg"));
     }
 
     public void initView(){
@@ -61,6 +81,13 @@ public class MP3PlayerActivity extends AppCompatActivity implements View.OnClick
         homeDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //轮播图
+        mCycleViewPager = (CycleViewPager) findViewById(R.id.cycle_view);
+        //设置选中和未选中时的图片
+        mCycleViewPager.setIndicators(R.mipmap.ad_select, R.mipmap.ad_unselect);
+        //设置轮播间隔时间
+        mCycleViewPager.setDelay(2000);
+        mCycleViewPager.setData(mList, mAdCycleViewListener);
 
         linearLayout_local.setOnClickListener(this);
         linearLayout_recent.setOnClickListener(this);
@@ -119,4 +146,21 @@ public class MP3PlayerActivity extends AppCompatActivity implements View.OnClick
         }
         startActivity(intent);
     }
+
+    /**
+     * 轮播图点击监听
+     */
+    private CycleViewPager.ImageCycleViewListener mAdCycleViewListener =
+            new CycleViewPager.ImageCycleViewListener() {
+
+                @Override
+                public void onImageClick(Info info, int position, View imageView) {
+
+                    if (mCycleViewPager.isCycle()) {
+                        position = position - 1;
+                    }
+                    Toast.makeText(MP3PlayerActivity.this, info.getTitle() +
+                            "选择了--" + position, Toast.LENGTH_LONG).show();
+                }
+            };
 }

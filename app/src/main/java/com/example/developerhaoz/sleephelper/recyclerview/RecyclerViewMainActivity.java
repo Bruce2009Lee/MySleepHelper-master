@@ -1,12 +1,16 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
@@ -100,5 +104,33 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         }
         startActivity(intent);
 
+    }
+
+
+    /**
+     * 得到轮播图的View
+     * @param context
+     * @param url
+     * @return
+     */
+    public static View getImageView(Context context, String url) {
+
+        RelativeLayout rl = new RelativeLayout(context);
+        //添加一个ImageView，并加载图片
+        ImageView imageView = new ImageView(context);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setLayoutParams(layoutParams);
+        //使用Glide来加载图片
+        Glide.with(context).load(url).into(imageView);
+        //在Imageview前添加一个半透明的黑色背景，防止文字和图片混在一起
+        ImageView backGround = new ImageView(context);
+        backGround.setLayoutParams(layoutParams);
+        backGround.setBackgroundResource(R.color.cycle_image_bg);
+        rl.addView(imageView);
+        rl.addView(backGround);
+        return rl;
     }
 }
