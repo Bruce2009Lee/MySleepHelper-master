@@ -39,6 +39,48 @@
         <item name="colorAccent">@color/biliPink50</item>
     </style>
 
+    <style name="KuAnGreenTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/kuanGreen</item>
+        <item name="colorPrimaryDark">@color/kuanGreen</item>
+        <item name="colorAccent">@color/kuanGreen</item>
+    </style>
+    <style name="ZhiHuBlueTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/zhihuBlue</item>
+        <item name="colorPrimaryDark">@color/zhihuBlue</item>
+        <item name="colorAccent">@color/zhihuBlue</item>
+    </style>
+    <style name="CloudRedTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/cloudRed</item>
+        <item name="colorPrimaryDark">@color/cloudRed</item>
+        <item name="colorAccent">@color/cloudRed</item>
+    </style>
+    <style name="TengLuoPurpleTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/tengluoPurple</item>
+        <item name="colorPrimaryDark">@color/tengluoPurple</item>
+        <item name="colorAccent">@color/tengluoPurple</item>
+    </style>
+    <style name="SeaBlueTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/seaBlue</item>
+        <item name="colorPrimaryDark">@color/seaBlue</item>
+        <item name="colorAccent">@color/seaBlue</item>
+    </style>
+    <style name="GrassGreenTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/grassGreen</item>
+        <item name="colorPrimaryDark">@color/grassGreen</item>
+        <item name="colorAccent">@color/grassGreen</item>
+    </style>
+    <style name="CoffeeBrownTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/coffeeBrown</item>
+        <item name="colorPrimaryDark">@color/coffeeBrown</item>
+        <item name="colorAccent">@color/coffeeBrown</item>
+
+    </style>
+    <style name="LemonOrangeTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/lemonOrange</item>
+        <item name="colorPrimaryDark">@color/lemonOrange</item>
+        <item name="colorAccent">@color/lemonOrange</item>
+    </style>
+
     <!--&lt;!&ndash;日间模式&ndash;&gt;-->
     <!--<style name="Theme_Day" parent="AppTheme">-->
         <!--<item name="rootViewBg">@color/white</item>-->
