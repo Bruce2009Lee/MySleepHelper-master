@@ -69,7 +69,8 @@
         <activity android:name=".recyclerview.FavoriteMusicActivity" />
         <activity android:name=".recyclerview.RecentMusicActivity" />
         <activity android:name=".recyclerview.ThemeActivity" />
-        <activity android:name=".recyclerview.BaseActivity"></activity>
+        <activity android:name=".recyclerview.BaseActivity" />
+        <activity android:name=".recyclerview.TabbarActivity"></activity>
     </application>
 
 </manifest>

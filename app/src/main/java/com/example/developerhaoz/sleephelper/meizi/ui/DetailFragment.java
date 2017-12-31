@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.developerhaoz.sleephelper.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -24,7 +24,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class DetailFragment extends Fragment {
 
     private static final String IMAGE_URL = "imageUrl";
-    @Bind(R.id.detail_pv_show_photo)
+    @BindView(R.id.detail_pv_show_photo)
     PhotoView mPvShowPhoto;
 
     public static DetailFragment newInstance(String imageUrl) {
@@ -60,6 +60,6 @@ public class DetailFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 }

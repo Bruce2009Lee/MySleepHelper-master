@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -34,9 +34,9 @@ import butterknife.ButterKnife;
 
 public class MeiziFragment extends Fragment {
 
-    @Bind(R.id.meizi_rv_show_meizi)
+    @BindView(R.id.meizi_rv_show_meizi)
     RecyclerView mRvShowMeizi;
-    @Bind(R.id.meizi_refresh)
+    @BindView(R.id.meizi_refresh)
     SwipeRefreshLayout mRefresh;
 
     List<MeiziBean> meiziBeanList = new ArrayList<>();
@@ -92,7 +92,7 @@ public class MeiziFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 }
 

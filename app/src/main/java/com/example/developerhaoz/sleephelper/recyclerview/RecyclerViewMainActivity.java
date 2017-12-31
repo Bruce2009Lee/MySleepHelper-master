@@ -21,7 +21,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
     private static final String TAG = "MainActivity";
 
     private Button btn_pu,btn_linear,btn_mix,btn_customDialog,btn_popWindow,btn_fragment;
-    private Button btn_iosDialog,btn_glide,btn_mp3;
+    private Button btn_iosDialog,btn_glide,btn_mp3,btn_tab_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         btn_iosDialog = (Button) findViewById(R.id.btn_ios_dial);
         btn_glide = (Button) findViewById(R.id.btn_glide);
         btn_mp3 = (Button) findViewById(R.id.btn_mp3);
+        btn_tab_bar = (Button) findViewById(R.id.btn_tab_bar);
 
 
         btn_pu.setOnClickListener(this);
@@ -65,6 +66,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         btn_iosDialog.setOnClickListener(this);
         btn_glide.setOnClickListener(this);
         btn_mp3.setOnClickListener(this);
+        btn_tab_bar.setOnClickListener(this);
     }
 
     @Override
@@ -99,6 +101,9 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
                 break;
             case R.id.btn_mp3:
                 intent = new Intent(RecyclerViewMainActivity.this,MP3PlayerActivity.class);
+                break;
+            case R.id.btn_tab_bar:
+                intent = new Intent(RecyclerViewMainActivity.this,TabbarActivity.class);
                 break;
 
         }

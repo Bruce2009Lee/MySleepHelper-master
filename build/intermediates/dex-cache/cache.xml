@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_540cc8eb6f8d41c2d57ce7b51349825219864f6a/classes.dex" />
     </item>
     <item
@@ -21,12 +21,57 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/lizhonglian/.android/build-cache/55508cff965250e8968e64cdaec8b91be724d170/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8af6acf73ab824407c1e2c6fa53f9d0c57299573">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b05654211b9b884d655f4aad7d2ef4f6a2f296f0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhonglian/.android/build-cache/13c0ade23e29416c1a95ff5da6c4768307943fa5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6a2bcb61342d09fe9acf55c9daf63961c8866cc0">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6e1a0b511eb75cdf53eb49f019b800ce6d7d040c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhonglian/.android/build-cache/c7fb7dc8fd05853737b54b03f47286dbfd31e594/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="60ad0bc45ff342ab7613ef52587e56f3f9e6d2d4">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2df332986d870da493fd2267e74505b314e5ac37/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhonglian/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.8.1/bc373fb6bc7bca3035041b924f158fd2b946ee8d/butterknife-annotations-8.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bc373fb6bc7bca3035041b924f158fd2b946ee8d">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.8.1_00a9a1cb22e174d36e4000c88a92fd28aad63502/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="f48782fe8495bc191e1e903bee09a84a2a4cf285">
+        sha1="ef9a0b89656e78f3db79e5d72ef9c7c46a24e896">
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_428de0e668de1d276f3a010c31f836b570466d2b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhonglian/.android/build-cache/647323de23b7014466e331f72956f70e809e10ef/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4744089ba76f30cbe4ee3aaa85f2b10003a11993">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4aa1307ae555ad338424e82055956de38debaba9/classes.dex" />
     </item>
 
 </items>

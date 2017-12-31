@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+
 
 android {
     compileSdkVersion 25
@@ -39,13 +42,18 @@ dependencies {
 
 
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //页面事件交互
+    //图片加载
+    //注解
+    //快速Tab库
+    //滑动返回Activity
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
     compile 'com.orhanobut:logger:1.15'
     compile 'com.android.support:design:25.3.1'
     compile 'com.getbase:floatingactionbutton:1.5.1'
@@ -61,8 +69,11 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.github.paolorotolo:appintro:4.0.0'
     compile 'cn.hugeterry.updatefun:updatefun:2.0.6'
+    compile 'cn.bingoogolapple:bga-swipebacklayout:1.1.1@aar'
+    compile 'com.github.AriesHoo:TitleBarView:2.0.0'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

@@ -72,5 +72,12 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="mp3"/>
+
+        <Button
+            android:id="@+id/btn_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="tab_bar"/>
     </LinearLayout>
 </ScrollView>

@@ -25,7 +25,7 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cc.trity.floatingactionbutton.FloatingActionButton;
@@ -39,31 +39,31 @@ import cc.trity.floatingactionbutton.FloatingActionsMenu;
 
 public class UpdateDiaryActivity extends AppCompatActivity {
 
-    @Bind(R.id.update_diary_tv_date)
+    @BindView(R.id.update_diary_tv_date)
     TextView mUpdateDiaryTvDate;
-    @Bind(R.id.update_diary_et_title)
+    @BindView(R.id.update_diary_et_title)
     EditText mUpdateDiaryEtTitle;
-    @Bind(R.id.update_diary_et_content)
+    @BindView(R.id.update_diary_et_content)
     LinedEditText mUpdateDiaryEtContent;
-    @Bind(R.id.update_diary_fab_back)
+    @BindView(R.id.update_diary_fab_back)
     FloatingActionButton mUpdateDiaryFabBack;
-    @Bind(R.id.update_diary_fab_add)
+    @BindView(R.id.update_diary_fab_add)
     FloatingActionButton mUpdateDiaryFabAdd;
-    @Bind(R.id.update_diary_fab_delete)
+    @BindView(R.id.update_diary_fab_delete)
     FloatingActionButton mUpdateDiaryFabDelete;
-    @Bind(R.id.right_labels)
+    @BindView(R.id.right_labels)
     FloatingActionsMenu mRightLabels;
-    @Bind(R.id.update_diary_tv_tag)
+    @BindView(R.id.update_diary_tv_tag)
     TextView mTvTag;
-    @Bind(R.id.home_iv_draw)
+    @BindView(R.id.home_iv_draw)
     ImageView mIvDraw;
-    @Bind(R.id.home_tv_title_normal)
+    @BindView(R.id.home_tv_title_normal)
     TextView mTvTitle;
-    @Bind(R.id.home_tv_title_center)
+    @BindView(R.id.home_tv_title_center)
     TextView mTvCenter;
-    @Bind(R.id.home_iv_menu)
+    @BindView(R.id.home_iv_menu)
     ImageView mIvMenu;
-    @Bind(R.id.contacts_tab_rl)
+    @BindView(R.id.contacts_tab_rl)
     LinearLayout mContactsTabRl;
 
     private DiaryDatabaseHelper mHelper;

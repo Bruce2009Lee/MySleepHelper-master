@@ -24,7 +24,7 @@ import com.example.developerhaoz.sleephelper.diary.utils.GetDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -36,27 +36,27 @@ import butterknife.OnClick;
 
 public class DiaryFragment extends Fragment {
 
-    @Bind(R.id.main_iv_circle)
+    @BindView(R.id.main_iv_circle)
     ImageView mIvCircle;
-    @Bind(R.id.main_tv_date)
+    @BindView(R.id.main_tv_date)
     TextView mTvDate;
-    @Bind(R.id.main_tv_content)
+    @BindView(R.id.main_tv_content)
     TextView mTvContent;
-    @Bind(R.id.item_ll_control)
+    @BindView(R.id.item_ll_control)
     LinearLayout mLlControl;
-    @Bind(R.id.item_first)
+    @BindView(R.id.item_first)
     LinearLayout mItemFirst;
-    @Bind(R.id.main_rv_show_diary)
+    @BindView(R.id.main_rv_show_diary)
     RecyclerView mRvShowDiary;
-    @Bind(R.id.main_ll_main)
+    @BindView(R.id.main_ll_main)
     LinearLayout mLlMain;
-    @Bind(R.id.main_fab_enter_edit)
+    @BindView(R.id.main_fab_enter_edit)
     FloatingActionButton mFabEnterEdit;
-    @Bind(R.id.main_rl_main)
+    @BindView(R.id.main_rl_main)
     RelativeLayout mRlMain;
-    @Bind(R.id.main_ll_date)
+    @BindView(R.id.main_ll_date)
     LinearLayout mLlDate;
-    @Bind(R.id.main_ll_content)
+    @BindView(R.id.main_ll_content)
     LinearLayout mLlContent;
 
     private List<DiaryBean> mDiaryBeanList;
@@ -132,7 +132,7 @@ public class DiaryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @OnClick(R.id.main_fab_enter_edit)

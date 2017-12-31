@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.recyclerview.adapter.LinearRecyclerViewAdapter;
 
 public class LinearRecyclerViewActivity extends AppCompatActivity {
 

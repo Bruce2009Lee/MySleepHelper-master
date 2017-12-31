@@ -22,7 +22,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -33,9 +33,9 @@ import butterknife.ButterKnife;
 
 public class DuanziFragment extends Fragment implements DuanziAdapter.OnItemClickCallback{
 
-    @Bind(R.id.duanzi_rv_show_duanzi)
+    @BindView(R.id.duanzi_rv_show_duanzi)
     RecyclerView mRvShowDuanzi;
-    @Bind(R.id.duanzi_refresh)
+    @BindView(R.id.duanzi_refresh)
     SwipeRefreshLayout mRefresh;
 
     public static DuanziFragment newInstance() {
@@ -85,7 +85,7 @@ public class DuanziFragment extends Fragment implements DuanziAdapter.OnItemClic
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @Override

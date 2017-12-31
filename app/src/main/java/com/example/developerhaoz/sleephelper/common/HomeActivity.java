@@ -34,8 +34,8 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.BindView;
 
 
 /**
@@ -45,23 +45,23 @@ import butterknife.ButterKnife;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    @Bind(R.id.home_view_pager)
+    @BindView(R.id.home_view_pager)
     ViewPager mHomeVp;
-    @Bind(R.id.home_tab_layout)
+    @BindView(R.id.home_tab_layout)
     CommonTabLayout mHomeTabLayout;
-    @Bind(R.id.home_dl)
+    @BindView(R.id.home_dl)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.home_navigation_view)
+    @BindView(R.id.home_navigation_view)
     NavigationView mNavigationView;
-    @Bind(R.id.home_iv_draw)
+    @BindView(R.id.home_iv_draw)
     ImageView mIvDraw;
-    @Bind(R.id.home_tv_title_normal)
+    @BindView(R.id.home_tv_title_normal)
     TextView mTvNormal;
-    @Bind(R.id.home_tv_title_center)
+    @BindView(R.id.home_tv_title_center)
     TextView mTvCenter;
-    @Bind(R.id.home_iv_menu)
+    @BindView(R.id.home_iv_menu)
     ImageView mIvMenu;
-    @Bind(R.id.contacts_tab_rl)
+    @BindView(R.id.contacts_tab_rl)
     LinearLayout mContactsTabRl;
 
     private static final int[] SELECTED_ICONS = new int[]{R.drawable.diary_selected, R.drawable.duanzi_selected, R.drawable.meizi_selected};

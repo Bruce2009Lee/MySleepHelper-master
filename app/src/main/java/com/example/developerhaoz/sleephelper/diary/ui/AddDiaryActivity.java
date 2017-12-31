@@ -20,7 +20,7 @@ import com.example.developerhaoz.sleephelper.diary.db.DiaryDatabaseHelper;
 import com.example.developerhaoz.sleephelper.diary.utils.GetDate;
 import com.example.developerhaoz.sleephelper.diary.widget.LinedEditText;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cc.trity.floatingactionbutton.FloatingActionButton;
@@ -34,23 +34,23 @@ import cc.trity.floatingactionbutton.FloatingActionsMenu;
 
 public class AddDiaryActivity extends AppCompatActivity {
 
-    @Bind(R.id.add_diary_et_title)
+    @BindView(R.id.add_diary_et_title)
     EditText mAddDiaryEtTitle;
-    @Bind(R.id.add_diary_et_content)
+    @BindView(R.id.add_diary_et_content)
     LinedEditText mAddDiaryEtContent;
-    @Bind(R.id.add_diary_fab_back)
+    @BindView(R.id.add_diary_fab_back)
     FloatingActionButton mAddDiaryFabBack;
-    @Bind(R.id.add_diary_fab_add)
+    @BindView(R.id.add_diary_fab_add)
     FloatingActionButton mAddDiaryFabAdd;
-    @Bind(R.id.right_labels)
+    @BindView(R.id.right_labels)
     FloatingActionsMenu mRightLabels;
-    @Bind(R.id.home_iv_draw)
+    @BindView(R.id.home_iv_draw)
     ImageView mIvDraw;
-    @Bind(R.id.home_tv_title_normal)
+    @BindView(R.id.home_tv_title_normal)
     TextView mTvTitle;
-    @Bind(R.id.home_iv_menu)
+    @BindView(R.id.home_iv_menu)
     ImageView mIvMenu;
-    @Bind(R.id.contacts_tab_rl)
+    @BindView(R.id.contacts_tab_rl)
     LinearLayout mContactsTabRl;
 
     private DiaryDatabaseHelper mHelper;

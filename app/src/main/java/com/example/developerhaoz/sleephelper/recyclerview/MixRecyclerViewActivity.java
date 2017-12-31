@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.recyclerview.adapter.MixRecyclerViewAdapter;
 
 public class MixRecyclerViewActivity extends AppCompatActivity {
 

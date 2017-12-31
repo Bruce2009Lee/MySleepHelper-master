@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
 
 import bolts.Continuation;
 import bolts.Task;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -48,7 +48,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final String IMAGE_URL_LIST = "imageUrlList";
     private static final String POSITION = "position";
 
-    @Bind(R.id.detail_vp_show_photo)
+    @BindView(R.id.detail_vp_show_photo)
     ViewPager mVpShowPhoto;
 
     public static void startActivity(Context context, ArrayList<String> imageUrlList, int position) {
