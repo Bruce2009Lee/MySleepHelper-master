@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.recyclerview.inter.IBasisView;
 import com.example.developerhaoz.sleephelper.util.ActivityStackUtil;
+import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,9 +40,7 @@ public class BaseActivity extends AppCompatActivity implements IBasisView {
 
     private void initTheme(){
 
-        //TODO:
-//            int themeId = MyMusicUtil.getTheme(BaseActivity.this);
-        int themeId = BiLiPinkTheme;
+        int themeId = SpUtils.getTheme(BaseActivity.this);
         switch (themeId){
             default:
             case 0:

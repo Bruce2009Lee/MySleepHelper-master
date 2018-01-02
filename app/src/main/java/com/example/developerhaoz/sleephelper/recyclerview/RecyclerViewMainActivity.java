@@ -123,9 +123,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         RelativeLayout rl = new RelativeLayout(context);
         //添加一个ImageView，并加载图片
         ImageView imageView = new ImageView(context);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(layoutParams);
         //使用Glide来加载图片

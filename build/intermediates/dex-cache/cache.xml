@@ -73,5 +73,14 @@
         sha1="4744089ba76f30cbe4ee3aaa85f2b10003a11993">
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4aa1307ae555ad338424e82055956de38debaba9/classes.dex" />
     </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhonglian/.android/build-cache/f2cded8671b7f70e180f96b36583a04645213a69/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fbaffbfc2a42fce3718dc9f52182810ad332b0ec">
+        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6ad74ab9f88a77082ac785363b55dce05a8fb5fc/classes.dex" />
+    </item>
 
 </items>
