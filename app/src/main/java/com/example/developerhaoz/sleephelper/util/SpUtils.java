@@ -2,6 +2,7 @@ package com.example.developerhaoz.sleephelper.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity;
@@ -20,6 +21,7 @@ public class SpUtils {
         int preSelect = getTheme(context);
         SharedPreferences sharedPreferences = context.getSharedPreferences("theme", Context.MODE_PRIVATE);
         sharedPreferences.edit().putInt("theme_select", position).commit();
+        Toast.makeText(context,"save " + position,Toast.LENGTH_SHORT).show();
         if (preSelect != 8) {
             sharedPreferences.edit().putInt("pre_theme_select", preSelect).commit();
         }
@@ -28,7 +30,9 @@ public class SpUtils {
     //得到主题
     public static int getTheme(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("theme", Context.MODE_PRIVATE);
+        Toast.makeText(context,"read " + sharedPreferences.getInt("theme_select", 0),Toast.LENGTH_SHORT).show();
         return sharedPreferences.getInt("theme_select", 0);
+
     }
 
     //得到主题

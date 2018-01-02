@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="ef9a0b89656e78f3db79e5d72ef9c7c46a24e896">
+        sha1="f6b84d16906633181a2f9eb373a2ae6c2998995e">
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_428de0e668de1d276f3a010c31f836b570466d2b/classes.dex" />
     </item>
     <item

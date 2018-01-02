@@ -1,5 +1,6 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -116,12 +118,13 @@ public class ThemeActivity extends AppCompatActivity {
             }else {
                 holder.circleIv.setImageBitmap(null);
                 holder.selectBtn.setText("使用");
-                holder.selectBtn.setTextColor(getResources().getColor(R.color.gray_light));
+                holder.selectBtn.setTextColor(getResources().getColor(R.color.grey500));
             }
 
             holder.circleIv.setBackgroundResource(themeInfo.getColor());
             holder.nameTv.setTextColor(getResources().getColor(themeInfo.getColor()));
             holder.nameTv.setText(themeInfo.getName());
+
             holder.selectBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -142,12 +145,26 @@ public class ThemeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(ThemeActivity.this,MP3PlayerActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
     private void refreshTheme(ThemeInfo themeInfo,int position){
 
         selectTheme = position;
         SpUtils.setTheme(ThemeActivity.this,position);
+
         toolbar.setBackgroundColor(getResources().getColor(themeInfo.getColor()));
         recyclerView.setBackgroundColor(getResources().getColor(themeInfo.getBackground()));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(themeInfo.getColor()));
         }

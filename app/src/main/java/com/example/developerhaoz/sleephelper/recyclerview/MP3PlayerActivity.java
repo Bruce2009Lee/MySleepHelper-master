@@ -6,7 +6,9 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,7 +54,9 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
 
         toolbar = (Toolbar) findViewById(R.id.home_activity_toolbar);
         setSupportActionBar(toolbar);
-        translucentStatusBar();
+
+        //是否沉浸式展示
+//        translucentStatusBar();
 
         initData();
         initView();
@@ -72,8 +76,12 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
         homeDrawerLayout = (DrawerLayout) findViewById(R.id.home_dl_main);
         homeNavigationView = (NavigationView) findViewById(R.id.nav_view_main);
 
-        toolbar.setNavigationIcon(R.drawable.menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationIcon(R.drawable.drawer_menu);
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -104,7 +112,7 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
 
                 switch (item.getItemId()){
                    case  R.id.menu_me_item_theme:
-                       Toast.makeText(MP3PlayerActivity.this,"onSelected " + item.getItemId(),Toast.LENGTH_SHORT).show();
+//                       Toast.makeText(MP3PlayerActivity.this,"onSelected " + item.getItemId(),Toast.LENGTH_SHORT).show();
 //                       isStartTheme = true;
                        Intent intentTheme = new Intent(MP3PlayerActivity.this,ThemeActivity.class);
                        startActivity(intentTheme);
@@ -153,6 +161,16 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
                 break;
         }
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (homeDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            homeDrawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
     }
 
     /**

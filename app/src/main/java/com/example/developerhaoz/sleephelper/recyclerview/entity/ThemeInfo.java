@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 
 public class ThemeInfo implements Parcelable {
+
     private String name;
     private int color;
     private int background;
