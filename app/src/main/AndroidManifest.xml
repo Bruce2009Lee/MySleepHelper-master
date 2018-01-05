@@ -68,6 +68,7 @@
         </activity>
         <activity android:name=".test.GlideTestActivity" />
         <activity
+            android:launchMode="singleTask"
             android:name=".recyclerview.MP3PlayerActivity" />
         <activity
             android:name=".recyclerview.LocalMusicActivity" />

@@ -79,8 +79,6 @@ public class LocalMusicActivity extends FastMainActivity {
         if (item.getItemId() == R.id.scan_local_menu){
             Intent intent = new Intent(LocalMusicActivity.this,ScanActivity.class);
             startActivity(intent);
-        }else if (item.getItemId() == android.R.id.home){
-            this.finish();
         }
         return true;
     }

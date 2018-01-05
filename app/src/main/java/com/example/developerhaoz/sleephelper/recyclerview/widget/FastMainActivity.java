@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,6 +56,17 @@ public abstract class FastMainActivity extends BaseActivity implements IFastMain
     @Override
     public int getContentLayout() {
         return  R.layout.fast_activity_main;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return true;
     }
 
     /**
