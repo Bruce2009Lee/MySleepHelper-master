@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
-import com.example.developerhaoz.sleephelper.recyclerview.ContainerActivity;
 
 /**
  * Created by lizhonglian on 2017/12/19.

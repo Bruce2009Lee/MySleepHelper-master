@@ -112,6 +112,7 @@
     <orderEntry type="library" exported="" scope="TEST" name="leakcanary-android-no-op-1.5.1" level="project" />
     <orderEntry type="library" exported="" name="appintro-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="butterknife-annotations-8.8.1" level="project" />
+    <orderEntry type="library" exported="" name="pinyin4j-2.5.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="exposed-instrumentation-api-publish-0.5" level="project" />
     <orderEntry type="library" exported="" name="DialogUtils-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="roundedimageview-2.3.0" level="project" />

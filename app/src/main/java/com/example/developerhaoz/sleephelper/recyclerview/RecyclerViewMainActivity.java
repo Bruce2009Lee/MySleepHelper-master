@@ -1,8 +1,13 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,13 +17,26 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.test.ContainerActivity;
+import com.example.developerhaoz.sleephelper.test.CustomDialogActivity;
+import com.example.developerhaoz.sleephelper.test.GlideTestActivity;
+import com.example.developerhaoz.sleephelper.test.IntroTestActivity;
+import com.example.developerhaoz.sleephelper.test.LinearRecyclerViewActivity;
+import com.example.developerhaoz.sleephelper.test.MixRecyclerViewActivity;
+import com.example.developerhaoz.sleephelper.test.PopupWindowActivity;
+import com.example.developerhaoz.sleephelper.test.PuRecyclerViewActivity;
+import com.example.developerhaoz.sleephelper.test.iOSDialogActivity;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class RecyclerViewMainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "MainActivity";
+
 
     private Button btn_pu,btn_linear,btn_mix,btn_customDialog,btn_popWindow,btn_fragment;
     private Button btn_iosDialog,btn_glide,btn_mp3,btn_tab_bar;

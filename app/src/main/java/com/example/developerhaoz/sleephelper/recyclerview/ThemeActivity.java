@@ -19,12 +19,13 @@ import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.ThemeInfo;
+import com.example.developerhaoz.sleephelper.recyclerview.widget.FastMainActivity;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThemeActivity extends AppCompatActivity {
+public class ThemeActivity extends FastMainActivity {
 
     public static int THEME_SIZE = 9;
 
@@ -53,6 +54,8 @@ public class ThemeActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+//        translucentStatusBar();
 
         init();
     }
@@ -148,6 +151,7 @@ public class ThemeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(ThemeActivity.this,MP3PlayerActivity.class);

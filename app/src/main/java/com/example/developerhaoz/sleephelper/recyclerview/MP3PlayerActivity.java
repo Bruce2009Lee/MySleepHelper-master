@@ -1,30 +1,23 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
-import com.example.developerhaoz.sleephelper.fragment.AFragment;
-import com.example.developerhaoz.sleephelper.recyclerview.entity.FastTabEntity;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
-import com.example.developerhaoz.sleephelper.recyclerview.inter.IFastMainView;
 import com.example.developerhaoz.sleephelper.recyclerview.widget.FastMainActivity;
+import com.example.developerhaoz.sleephelper.test.CycleViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,19 +125,6 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
 
     }
 
-    /**
-     * 实现5.0以上状态栏透明(默认状态是半透明)
-     */
-    private void translucentStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -188,5 +168,7 @@ public class MP3PlayerActivity extends FastMainActivity implements View.OnClickL
                     Toast.makeText(MP3PlayerActivity.this, info.getTitle() + "选择了--" + position, Toast.LENGTH_LONG).show();
                 }
             };
+
+
 
 }

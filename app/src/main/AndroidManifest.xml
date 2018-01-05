@@ -30,7 +30,8 @@
             android:windowSoftInputMode="adjustPan" />
 
         <!-- 主界面的 Activity -->
-        <activity android:name=".common.HomeActivity" />
+        <activity
+            android:name=".common.HomeActivity" ></activity>
 
         <!-- 查看图片的播放页面 -->
 
@@ -47,33 +48,38 @@
         <activity android:name=".test.JSActivity" />
         <activity android:name=".test.ActivityTestWebCacheMain" />
         <activity android:name=".test.ActivityTestSaveToFile" />
-        <activity android:name=".recyclerview.PuRecyclerViewActivity" />
-        <activity android:name=".recyclerview.RecyclerViewMainActivity">
+        <activity android:name=".test.PuRecyclerViewActivity" />
+        <activity
+            android:name=".recyclerview.RecyclerViewMainActivity">
+        </activity>
+        <activity android:name=".test.LinearRecyclerViewActivity" />
+        <activity android:name=".test.MixRecyclerViewActivity" />
+        <activity android:name=".test.CustomDialogActivity" />
+        <activity android:name=".test.PopupWindowActivity" />
+        <activity android:name=".test.ContainerActivity" />
+        <activity android:name=".recyclerview.EventActivity" />
+        <activity android:name=".test.iOSDialogActivity" />
+        <activity
+            android:name=".test.IntroTestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".recyclerview.LinearRecyclerViewActivity" />
-        <activity android:name=".recyclerview.MixRecyclerViewActivity" />
-        <activity android:name=".recyclerview.CustomDialogActivity" />
-        <activity android:name=".recyclerview.PopupWindowActivity" />
-        <activity android:name=".recyclerview.ContainerActivity" />
-        <activity android:name=".recyclerview.EventActivity" />
-        <activity android:name=".recyclerview.iOSDialogActivity" />
-        <activity android:name=".recyclerview.IntroTestActivity" />
-        <activity android:name=".recyclerview.GlideTestActivity" />
-        <activity android:name=".recyclerview.MP3PlayerActivity" />
-        <activity android:name=".recyclerview.LocalMusicActivity" />
+        <activity android:name=".test.GlideTestActivity" />
+        <activity
+            android:name=".recyclerview.MP3PlayerActivity" />
+        <activity
+            android:name=".recyclerview.LocalMusicActivity" />
         <activity android:name=".recyclerview.FavoriteMusicActivity" />
         <activity android:name=".recyclerview.RecentMusicActivity" />
         <activity
             android:name=".recyclerview.ThemeActivity"
             android:label="主题中心"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity android:name=".recyclerview.BaseActivity" />
-        <activity android:name=".recyclerview.TabbarActivity"></activity>
+        <activity android:name=".recyclerview.TabbarActivity" />
+        <activity android:name=".recyclerview.ScanActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity;
 
+import static com.example.developerhaoz.sleephelper.common.SleepApplication.getContext;
+
 /**
  * Created by lyy on 2017/10/24.
  */
@@ -136,5 +138,17 @@ public class SpUtils {
         SharedPreferences.Editor editor = activityPreferences.edit();
         editor.putLong(strKey, strData);
         editor.commit();
+    }
+
+    // 获取sharedPreferences
+    public static int getIntShared(String key) {
+        SharedPreferences pref = getContext().getSharedPreferences("music", getContext().MODE_PRIVATE);
+        int value;
+        if (key.equals(AppConstants.KEY_CURRENT)){
+            value = pref.getInt(key, 0);
+        }else{
+            value = pref.getInt(key, -1);
+        }
+        return value;
     }
 }
