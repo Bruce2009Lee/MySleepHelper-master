@@ -30,8 +30,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <!-- 主界面的 Activity -->
-        <activity
-            android:name=".common.HomeActivity" ></activity>
+        <activity android:name=".common.HomeActivity" />
 
         <!-- 查看图片的播放页面 -->
 
@@ -49,9 +48,7 @@
         <activity android:name=".test.ActivityTestWebCacheMain" />
         <activity android:name=".test.ActivityTestSaveToFile" />
         <activity android:name=".test.PuRecyclerViewActivity" />
-        <activity
-            android:name=".recyclerview.RecyclerViewMainActivity">
-        </activity>
+        <activity android:name=".recyclerview.RecyclerViewMainActivity"></activity>
         <activity android:name=".test.LinearRecyclerViewActivity" />
         <activity android:name=".test.MixRecyclerViewActivity" />
         <activity android:name=".test.CustomDialogActivity" />
@@ -59,19 +56,18 @@
         <activity android:name=".test.ContainerActivity" />
         <activity android:name=".recyclerview.EventActivity" />
         <activity android:name=".test.iOSDialogActivity" />
-        <activity
-            android:name=".test.IntroTestActivity" >
+        <activity android:name=".test.IntroTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".test.GlideTestActivity" />
         <activity
-            android:launchMode="singleTask"
-            android:name=".recyclerview.MP3PlayerActivity" />
-        <activity
-            android:name=".recyclerview.LocalMusicActivity" />
+            android:name=".recyclerview.MP3PlayerActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".recyclerview.LocalMusicActivity" />
         <activity android:name=".recyclerview.FavoriteMusicActivity" />
         <activity android:name=".recyclerview.RecentMusicActivity" />
         <activity
@@ -80,8 +76,9 @@
             android:launchMode="singleTask" />
         <activity android:name=".recyclerview.BaseActivity" />
         <activity android:name=".recyclerview.TabbarActivity" />
-        <activity android:name=".recyclerview.ScanActivity"></activity>
-        <activity android:name=".recyclerview.PlayBarBaseActivity"></activity>
+        <activity android:name=".recyclerview.ScanActivity" />
+        <activity android:name=".recyclerview.PlayBarBaseActivity" />
+        <activity android:name=".recyclerview.PlayMusicActivity"></activity>
     </application>
 
 </manifest>

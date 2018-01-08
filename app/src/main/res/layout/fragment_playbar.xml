@@ -80,7 +80,9 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:clickable="true"
-                    android:padding="6dp"
+                    android:padding="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/play" />
 
                 <ImageView
@@ -88,7 +90,9 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:clickable="true"
-                    android:padding="10dp"
+                    android:padding="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/next" />
 
                 <ImageView
@@ -96,7 +100,9 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:clickable="true"
-                    android:padding="10dp"
+                    android:padding="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/menu" />
 
             </LinearLayout>
