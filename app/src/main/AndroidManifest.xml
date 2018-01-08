@@ -81,6 +81,7 @@
         <activity android:name=".recyclerview.BaseActivity" />
         <activity android:name=".recyclerview.TabbarActivity" />
         <activity android:name=".recyclerview.ScanActivity"></activity>
+        <activity android:name=".recyclerview.PlayBarBaseActivity"></activity>
     </application>
 
 </manifest>

@@ -16,13 +16,12 @@ import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
-import com.example.developerhaoz.sleephelper.recyclerview.widget.FastMainActivity;
 import com.example.developerhaoz.sleephelper.test.CycleViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MP3PlayerActivity extends FastMainActivity implements View.OnClickListener{
+public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener{
 
     private Toolbar toolbar;
     private LinearLayout linearLayout_local,linearLayout_recent,linearLayout_love;

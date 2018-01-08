@@ -148,20 +148,9 @@ public class ThemeActivity extends FastMainActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(ThemeActivity.this,MP3PlayerActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return true;
-    }
-
     private void refreshTheme(ThemeInfo themeInfo,int position){
+
+        //TODO:
 
         selectTheme = position;
         SpUtils.setTheme(ThemeActivity.this,position);
@@ -180,7 +169,6 @@ public class ThemeActivity extends FastMainActivity {
             }
         }
         adapter.notifyDataSetChanged();
-
     }
 
     @Override
