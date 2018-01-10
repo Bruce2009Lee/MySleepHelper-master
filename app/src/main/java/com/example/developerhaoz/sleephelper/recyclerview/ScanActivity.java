@@ -37,8 +37,8 @@ public class ScanActivity extends FastMainActivity {
 
     private Toolbar toolbar;
     private Button scanBtn;
-    private TextView scanProgressTv;
     private TextView scanPathTv;
+    private TextView scanProgressTv;
     private TextView scanCountTv;
     private CheckBox filterCb;
     private ScanView scanView;
@@ -129,10 +129,9 @@ public class ScanActivity extends FastMainActivity {
                         scanComplete();
                         break;
                     case AppConstants.SCAN_UPDATE:
-//                        int updateProgress = msg.getData().getInt("progress");
                         String path = msg.getData().getString("scanPath");
                         scanCountTv.setText("已扫描到" + progress + "首歌曲");
-                        scanPathTv.setText(path);
+                        scanPathTv.setText(scanPath);
                         break;
                 }
             }
@@ -151,6 +150,7 @@ public class ScanActivity extends FastMainActivity {
             }
         });
         scanView.stop();
+        scanPathTv.setText("");
     }
 
     //初始化当前播放音乐，有可能当前正在播放音乐已经被过滤掉了
@@ -242,18 +242,18 @@ public class ScanActivity extends FastMainActivity {
 
                             musicInfoList.add(musicInfo);
 
-//                            Log.d(TAG, "musicInfoList：" + musicInfoList.size() );
-
                             progress++;
                             scanPath = path;
                             musicCount = cursor.getCount();
                             msg = new Message();    //每次都必须new，必须发送新对象，不然会报错
                             msg.what = AppConstants.SCAN_UPDATE;
                             msg.arg1 = musicCount;
-//                                Bundle data = new Bundle();
-//                                data.putInt("progress", progress);
-//                                data.putString("scanPath", scanPath);
-//                                msg.setData(data);
+
+                            Bundle data = new Bundle();
+                            data.putInt("progress", progress);
+                            data.putString("scanPath", scanPath);
+                            msg.setData(data);
+
                             handler.sendMessage(msg);  //更新UI界面
                             try {
                                 sleep(50);

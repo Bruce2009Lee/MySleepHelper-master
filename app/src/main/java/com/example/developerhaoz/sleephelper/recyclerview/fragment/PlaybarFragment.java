@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -58,6 +61,8 @@ public class PlaybarFragment extends Fragment {
     private DBManager dbManager;
     private Context context;
 
+    Animation operatingAnim;
+
     public static synchronized PlaybarFragment newInstance() {
         return new PlaybarFragment();
     }
@@ -88,6 +93,10 @@ public class PlaybarFragment extends Fragment {
         albmIv = (ImageView) view.findViewById(R.id.album_picture_iv);
         musicNameTv = (TextView) view.findViewById(R.id.home_music_name_tv);
         singerNameTv = (TextView) view.findViewById(R.id.home_singer_name_tv);
+
+        operatingAnim = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_anim);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
 
         setMusicName();
         initPlayIv();
@@ -127,18 +136,23 @@ public class PlaybarFragment extends Fragment {
                 //如果当前媒体在播放音乐状态，则图片显示暂停图片，按下播放键，则发送暂停媒体命令，图片显示播放图片。以此类推。
                 if (status == AppConstants.STATUS_PAUSE) {
 
-                    Toast.makeText(getActivity(), "STATUS_PAUSE", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
                     intent.putExtra(AppConstants.COMMAND,AppConstants.COMMAND_PLAY);
                     getActivity().sendBroadcast(intent);
-                }else if (status == AppConstants.STATUS_PLAY) {
 
-                    Toast.makeText(getActivity(), "STATUS_PLAY", Toast.LENGTH_SHORT).show();
+                    if (operatingAnim != null) {
+                        albmIv.startAnimation(operatingAnim);
+                    }
+
+                }else if (status == AppConstants.STATUS_PLAY) {
 
                     Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
                     intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PAUSE);
                     getActivity().sendBroadcast(intent);
+
+                    if (operatingAnim != null) {
+                        albmIv.clearAnimation();
+                    }
                 }else {
 
                     //为停止状态时发送播放命令，并发送将要播放歌曲的路径
@@ -150,7 +164,10 @@ public class PlaybarFragment extends Fragment {
                     Log.i(TAG, "onClick: path = "+path);
 
                     getActivity().sendBroadcast(intent);
-                    Toast.makeText(getActivity(), "点击了play", Toast.LENGTH_SHORT).show();
+
+                    if (operatingAnim != null) {
+                        albmIv.startAnimation(operatingAnim);
+                    }
                 }
             }
         });
@@ -160,8 +177,11 @@ public class PlaybarFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "点击了next", Toast.LENGTH_SHORT).show();
-//                SpUtils.playNextMusic(getActivity());
+                SpUtils.playNextMusic(getActivity());
+
+                if (operatingAnim != null) {
+                    albmIv.startAnimation(operatingAnim);
+                }
             }
         });
 
@@ -261,14 +281,15 @@ public class PlaybarFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: ");
-//            setMusicName();
+
+            setMusicName();
             status = intent.getIntExtra(AppConstants.STATUS, 0);
             current = intent.getIntExtra(AppConstants.KEY_CURRENT, 0);
             duration = intent.getIntExtra(AppConstants.KEY_DURATION, 100);
             switch (status) {
                 case AppConstants.STATUS_STOP:
                     playIv.setSelected(false);
-//                    seekBar.setProgress(0);
+                    seekBar.setProgress(0);
                     break;
                 case AppConstants.STATUS_PLAY:
                     playIv.setSelected(true);
@@ -278,8 +299,8 @@ public class PlaybarFragment extends Fragment {
                     break;
                 case AppConstants.STATUS_RUN:
                     playIv.setSelected(true);
-                   /* seekBar.setMax(duration);
-                    seekBar.setProgress(current);*/
+                    seekBar.setMax(duration);
+                    seekBar.setProgress(current);
                     break;
                 default:
                     break;

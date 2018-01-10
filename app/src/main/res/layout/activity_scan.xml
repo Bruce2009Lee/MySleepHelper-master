@@ -51,21 +51,17 @@
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:maxLines="1"
-        android:background="@color/gray_light"
-        android:visibility="visible"
-        android:text="scan_progress"
+        android:visibility="gone"
         android:layout_below="@id/scan_filter_ll"/>
 
     <TextView
         android:id="@+id/scan_path"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_below="@id/scan_progress"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@color/gray_light"
-        android:text="scan path"
         android:maxLines="1"
         android:ellipsize="start"
         android:layout_centerHorizontal="true"/>
@@ -78,7 +74,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:maxLines="1"
-        android:background="@color/gray_light"
         android:text="scan count"
         android:ellipsize="end"/>
     <Button

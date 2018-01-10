@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.database.DBManager;
+import com.example.developerhaoz.sleephelper.recyclerview.PlayMusicService;
 import com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.MusicInfo;
 
@@ -125,10 +126,12 @@ public class SpUtils {
 
         //获取下一首ID
         DBManager dbManager = DBManager.getInstance(context);
+
         int playMode = SpUtils.getIntShared(AppConstants.KEY_MODE);
         int musicId = SpUtils.getIntShared(AppConstants.KEY_ID);
         List<MusicInfo> musicList = getCurPlayList(context);
         ArrayList<Integer> musicIdList =new ArrayList<>();
+
         for (MusicInfo info : musicList){
             musicIdList.add(info.getId());
         }
@@ -137,9 +140,9 @@ public class SpUtils {
         if (musicId == -1) {
 
             //TODO
-            /*Intent intent = new Intent(MusicPlayerService.PLAYER_MANAGER_ACTION);
+            Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
             intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_STOP);
-            context.sendBroadcast(intent);*/
+            context.sendBroadcast(intent);
             Toast.makeText(context, "歌曲不存在",Toast.LENGTH_LONG).show();
             return;
         }
@@ -148,12 +151,12 @@ public class SpUtils {
         String path = dbManager.getMusicPath(musicId);
         Log.d(TAG,"next path ="+path);
 
-        /*//发送播放请求
-        Log.d(TAG,"next  id = "+musicId+"path = "+ path);
-        Intent intent = new Intent(MusicPlayerService.PLAYER_MANAGER_ACTION);
+        //发送播放请求
+        Log.d(TAG,"next  id = " + musicId + "path = " + path);
+        Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
         intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PLAY);
         intent.putExtra(AppConstants.KEY_PATH, path);
-        context.sendBroadcast(intent);*/
+        context.sendBroadcast(intent);
     }
 
     // 获取下一首歌曲(id)

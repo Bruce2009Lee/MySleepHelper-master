@@ -11,6 +11,7 @@ import com.example.developerhaoz.sleephelper.database.DBManager;
 import com.example.developerhaoz.sleephelper.recyclerview.fragment.PlaybarFragment;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
+import com.example.developerhaoz.sleephelper.util.UpdateUIThread;
 
 import java.io.File;
 
@@ -48,7 +49,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
 
     private void initMediaPlayer() {
 
-//        NumberRandom(); // 改变线程号,使旧的播放线程停止
+        NumberRandom(); // 改变线程号,使旧的播放线程停止
 
         int musicId = SpUtils.getIntShared(AppConstants.KEY_ID);
         int current = SpUtils.getIntShared(AppConstants.KEY_CURRENT);
@@ -89,7 +90,14 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
 
     }
 
-
+    //取一个（0，100）之间的不一样的随机数
+    private void NumberRandom() {
+        int count;
+        do {
+            count =(int)(Math.random()*100);
+        } while (count == threadNumber);
+        threadNumber = count;
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -106,9 +114,10 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
 
                 status = AppConstants.STATUS_PLAY;
                 String musicPath = intent.getStringExtra(AppConstants.KEY_PATH);
-                if (musicPath!=null) {
+                if (musicPath != null) {
                     playMusic(musicPath);
                 }else {
+                    Log.d(TAG, "music is loaded");
                     mediaPlayer.start();
                 }
                 break;
@@ -117,7 +126,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
                 status = AppConstants.STATUS_PAUSE;
                 break;
             case AppConstants.COMMAND_STOP: //本程序停止状态都是删除当前播放音乐触发
-//                NumberRandom();
+                NumberRandom();
                 status = AppConstants.STATUS_STOP;
                 if(mediaPlayer!=null) {
                     mediaPlayer.stop();
@@ -130,7 +139,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
                 mediaPlayer.seekTo(curProgress);
                 break;
             case AppConstants.COMMAND_RELEASE:
-//                NumberRandom();
+                NumberRandom();
                 status = AppConstants.STATUS_STOP;
                 if(mediaPlayer!=null) {
                     mediaPlayer.stop();
@@ -143,7 +152,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
     }
 
     private void playMusic(String musicPath) {
-//        NumberRandom();
+        NumberRandom();
         if (mediaPlayer!=null) {
             mediaPlayer.release();
         }
@@ -153,7 +162,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 Log.d(TAG, "playMusic onCompletion: ");
-//                NumberRandom();				//切换线程
+                NumberRandom();				//切换线程
 //                onComplete();     //调用音乐切换模块，进行相应操作
                 UpdateUI(); 				//更新界面
             }
@@ -170,11 +179,19 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
             mediaPlayer.prepare();
             mediaPlayer.start();
 
-//            new UpdateUIThread(this, context, threadNumber).start();
+            new UpdateUIThread(this, context, threadNumber).start();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+    public int getThreadNumber() {
+        return threadNumber;
     }
 }

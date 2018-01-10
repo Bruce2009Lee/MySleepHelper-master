@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
@@ -26,6 +27,10 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     private Toolbar toolbar;
     private LinearLayout linearLayout_local,linearLayout_recent,linearLayout_love;
     private NavigationView homeNavigationView;
+
+    private TextView localSong;
+    private TextView latelySong;
+    private TextView favSong;
 
     private DrawerLayout homeDrawerLayout;
 
@@ -46,6 +51,11 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
         toolbar = (Toolbar) findViewById(R.id.home_activity_toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("爱音乐");
+        }
 
         //是否沉浸式展示
 //        translucentStatusBar();
@@ -62,9 +72,13 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     }
 
     public void initView(){
+
         linearLayout_local = (LinearLayout) findViewById(R.id.ll_local);
+        localSong = (TextView) findViewById(R.id.tv_local_songs);
         linearLayout_recent = (LinearLayout) findViewById(R.id.ll_recent);
+        latelySong = (TextView) findViewById(R.id.tv_recent_songs);
         linearLayout_love = (LinearLayout) findViewById(R.id.ll_love);
+        favSong = (TextView) findViewById(R.id.tv_love_songs);
         homeDrawerLayout = (DrawerLayout) findViewById(R.id.home_dl_main);
         homeNavigationView = (NavigationView) findViewById(R.id.nav_view_main);
 
