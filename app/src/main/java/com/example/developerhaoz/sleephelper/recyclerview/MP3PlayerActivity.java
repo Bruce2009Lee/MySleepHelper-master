@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,13 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.database.DBManager;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
 import com.example.developerhaoz.sleephelper.test.CycleViewPager;
+import com.example.developerhaoz.sleephelper.util.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener{
+
+    private static final String TAG = MP3PlayerActivity.class.getName();
 
     private Toolbar toolbar;
     private LinearLayout linearLayout_local,linearLayout_recent,linearLayout_love;
@@ -31,6 +36,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     private TextView localSong;
     private TextView latelySong;
     private TextView favSong;
+
+    private DBManager dbManager;
 
     private DrawerLayout homeDrawerLayout;
 
@@ -57,6 +64,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             actionBar.setTitle("爱音乐");
         }
 
+        dbManager = DBManager.getInstance(MP3PlayerActivity.this);
+
         //是否沉浸式展示
 //        translucentStatusBar();
 
@@ -65,10 +74,12 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     }
 
     public void initData(){
+
         mList.add(new Info("标题1", "http://img2.3lian.com/2014/c7/25/d/40.jpg"));
         mList.add(new Info("标题2", "http://img2.3lian.com/2014/c7/25/d/41.jpg"));
         mList.add(new Info("标题3", "http://imgsrc.baidu.com/forum/pic/item/b64543a98226cffc8872e00cb9014a90f603ea30.jpg"));
         mList.add(new Info("标题4", "http://imgsrc.baidu.com/forum/pic/item/261bee0a19d8bc3e6db92913828ba61eaad345d4.jpg"));
+
     }
 
     public void initView(){
@@ -135,6 +146,12 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
                 return true;
             }
         });
+
+        int songNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
+        Log.d(TAG,"songNum :" + songNum);
+        if (0 != songNum){
+            localSong.setText("" + songNum);
+        }
 
     }
 
