@@ -22,9 +22,13 @@ import android.widget.Toast;
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.database.DBManager;
 import com.example.developerhaoz.sleephelper.recyclerview.PlayMusicActivity;
+import com.example.developerhaoz.sleephelper.recyclerview.PlayMusicService;
+import com.example.developerhaoz.sleephelper.recyclerview.PlayerManagerReceiver;
 import com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
+
+import static com.example.developerhaoz.sleephelper.recyclerview.PlayerManagerReceiver.status;
 
 /**
  * Created by lizhonglian on 2018/1/3.
@@ -33,7 +37,7 @@ import com.example.developerhaoz.sleephelper.util.SpUtils;
 public class PlaybarFragment extends Fragment {
 
     private static final String TAG = "PlayBarFragment";
-    public static final String ACTION_UPDATE_UI_PlayBar = "com.example.developerhaoz.sleephelper.recyclerview.fragment.PlayBarFragment:action_update_ui_broad_cast";
+    public static final String ACTION_UPDATE_UI_PlayBar = "com.example.developerhaoz.sleephelper.recyclerview.fragment.PlaybarFragment:action_update_ui_broad_cast";
 
 
     //TODO:
@@ -110,33 +114,44 @@ public class PlaybarFragment extends Fragment {
         playIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int musicId = SpUtils.getIntShared(AppConstants.KEY_ID);
+
+                Log.i(TAG, "onClick: musicId = "+musicId);
                 if (musicId == -1 || musicId == 0) {
-                    /*Intent intent = new Intent(AppConstants.MP_FILTER);
-                    intent.putExtra(Constant.COMMAND, AppConstants.COMMAND_STOP);
-                    getActivity().sendBroadcast(intent);*/
-                    Toast.makeText(getActivity(), "点击了play", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AppConstants.MP_FILTER);
+                    intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_STOP);
+                    getActivity().sendBroadcast(intent);
                     return;
                 }
-                /*
                 //如果当前媒体在播放音乐状态，则图片显示暂停图片，按下播放键，则发送暂停媒体命令，图片显示播放图片。以此类推。
-                if (STATUS_FROM_SERVICE == AppConstants.STATUS_PAUSE) {
-                    Intent intent = new Intent(MusicPlayerService.PLAYER_MANAGER_ACTION);
+                if (status == AppConstants.STATUS_PAUSE) {
+
+                    Toast.makeText(getActivity(), "STATUS_PAUSE", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
                     intent.putExtra(AppConstants.COMMAND,AppConstants.COMMAND_PLAY);
                     getActivity().sendBroadcast(intent);
-                }else if (STATUS_FROM_SERVICE == AppConstants.STATUS_PLAY) {
-                    Intent intent = new Intent(MusicPlayerService.PLAYER_MANAGER_ACTION);
+                }else if (status == AppConstants.STATUS_PLAY) {
+
+                    Toast.makeText(getActivity(), "STATUS_PLAY", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
                     intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PAUSE);
                     getActivity().sendBroadcast(intent);
                 }else {
+
                     //为停止状态时发送播放命令，并发送将要播放歌曲的路径
                     String path = dbManager.getMusicPath(musicId);
-                    Intent intent = new Intent(MusicPlayerService.PLAYER_MANAGER_ACTION);
+                    Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
                     intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PLAY);
                     intent.putExtra(AppConstants.KEY_PATH, path);
+
                     Log.i(TAG, "onClick: path = "+path);
+
                     getActivity().sendBroadcast(intent);
-                }*/
+                    Toast.makeText(getActivity(), "点击了play", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -182,6 +197,7 @@ public class PlaybarFragment extends Fragment {
     }
 
     private void register() {
+
         mReceiver = new HomeReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_UPDATE_UI_PlayBar);
@@ -195,6 +211,7 @@ public class PlaybarFragment extends Fragment {
     }
 
     private void setMusicName() {
+
         int musicId = SpUtils.getIntShared(AppConstants.KEY_ID);
         if (musicId == -1) {
             musicNameTv.setText("听听音乐");
@@ -207,7 +224,7 @@ public class PlaybarFragment extends Fragment {
 
     private void initPlayIv() {
 
-        int status = STATUS;
+        int status = PlayerManagerReceiver.status;
         switch (status) {
             case AppConstants.STATUS_STOP:
                 playIv.setSelected(false);

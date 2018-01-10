@@ -265,7 +265,7 @@ public class DBManager {
 
 
     public void insertMusicListToMusicTable(List<MusicInfo> musicInfoList) {
-        Log.d(TAG, "insertMusicListToMusicTable: ");
+
         for (MusicInfo musicInfo : musicInfoList) {
             insertMusicInfoToMusicTable(musicInfo);
         }
@@ -288,6 +288,7 @@ public class DBManager {
             values.put(ID_COLUMN, id);
 //			values.put("mylove",0);
             db.insert(DatabaseHelper.MUSIC_TABLE, null, values);
+            Log.d(TAG, "insertMusicListToMusicTable: " + musicInfo.getName());
         } catch (Exception e) {
             e.printStackTrace();
             if (cursor!=null){
@@ -320,6 +321,7 @@ public class DBManager {
 
     public void updateAllMusic(List<MusicInfo> musicInfoList) {
         db.beginTransaction();
+
         try {
             deleteAllTable();
             insertMusicListToMusicTable(musicInfoList);
