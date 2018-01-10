@@ -212,6 +212,13 @@ public class SpUtils {
         editor.commit();
     }
 
+    public static void setShared(String key,String value){
+        SharedPreferences pref = getContext().getSharedPreferences("music",getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
     public static Boolean getBoolean(Context context, String strKey) {
         SharedPreferences setPreferences = context.getSharedPreferences(spFileName, Context.MODE_PRIVATE);
         Boolean result = setPreferences.getBoolean(strKey, false);

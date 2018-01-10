@@ -35,7 +35,6 @@ public class ScanActivity extends FastMainActivity {
 
     private static final String TAG = ScanActivity.class.getName();
 
-
     private Toolbar toolbar;
     private Button scanBtn;
     private TextView scanProgressTv;
@@ -77,8 +76,6 @@ public class ScanActivity extends FastMainActivity {
     }
 
     public void initView(){
-
-
 
         scanView = (ScanView) findViewById(R.id.scan_view);
         scanProgressTv = (TextView) findViewById(R.id.scan_progress);
@@ -128,11 +125,11 @@ public class ScanActivity extends FastMainActivity {
                         scanComplete();
                         break;
                     case AppConstants.SCAN_COMPLETE:
-//                        initCurPlaying();
+                        initCurPlaying();
                         scanComplete();
                         break;
                     case AppConstants.SCAN_UPDATE:
-                        int updateProgress = msg.getData().getInt("progress");
+//                        int updateProgress = msg.getData().getInt("progress");
                         String path = msg.getData().getString("scanPath");
                         scanCountTv.setText("已扫描到" + progress + "首歌曲");
                         scanPathTv.setText(path);
@@ -154,6 +151,43 @@ public class ScanActivity extends FastMainActivity {
             }
         });
         scanView.stop();
+    }
+
+    //初始化当前播放音乐，有可能当前正在播放音乐已经被过滤掉了
+    private void initCurPlaying(){
+        try {
+            //TODO:更改的
+            boolean contain = true;
+            int id = 1;
+            if (musicInfoList != null){
+                for (MusicInfo info : musicInfoList){
+
+                  /*  Log.d(TAG, "initCurPlaying: info.getPath() = "+info.getPath());
+                    Log.d(TAG, "initCurPlaying: curMusicPath = "+ curMusicPath);*/
+
+                    if (info.getPath().equals(curMusicPath)){
+                        contain = true;
+                        Log.d(TAG, "initCurPlaying: musicInfoList.indexOf(info) = " + musicInfoList.indexOf(info));
+                        id = musicInfoList.indexOf(info) + 1;
+                    }
+
+                }
+            }
+            if (contain){
+                Log.d(TAG, "initCurPlaying: contains");
+                Log.d(TAG, "initCurPlaying: id = "+id);
+                SpUtils.setShared(AppConstants.KEY_ID, id);
+            }else {
+                Log.d(TAG, "initCurPlaying: !!!contains");
+                Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
+                intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_STOP);
+                sendBroadcast(intent);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void startScanLocalMusic() {
@@ -185,7 +219,7 @@ public class ScanActivity extends FastMainActivity {
                             String duration = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DURATION));
 
                             if (filterCb.isChecked() && duration != null && Long.valueOf(duration) < 1000 * 60){
-                                Log.e(TAG, "run: name = "+name+" duration < 1000 * 60" );
+//                                Log.e(TAG, "run: name = "+name+" duration < 1000 * 60" );
                                 continue;
                             }
 
@@ -207,11 +241,14 @@ public class ScanActivity extends FastMainActivity {
                             musicInfo.setFirstLetter(ChineseToEnglish.StringToPinyinSpecial(name).toUpperCase().charAt(0)+"");
 
                             musicInfoList.add(musicInfo);
+
+//                            Log.d(TAG, "musicInfoList：" + musicInfoList.size() );
+
                             progress++;
                             scanPath = path;
                             musicCount = cursor.getCount();
                             msg = new Message();    //每次都必须new，必须发送新对象，不然会报错
-                            msg.what = 2;
+                            msg.what = AppConstants.SCAN_UPDATE;
                             msg.arg1 = musicCount;
 //                                Bundle data = new Bundle();
 //                                data.putInt("progress", progress);
@@ -225,10 +262,11 @@ public class ScanActivity extends FastMainActivity {
                             }
                         }
 
-
                         //扫描完成获取一下当前播放音乐及路径
                         curMusicId = SpUtils.getIntShared(AppConstants.KEY_ID);
                         curMusicPath = dbManager.getMusicPath(curMusicId);
+                        Log.d(TAG, "curMusicId：" + curMusicId );
+                        Log.d(TAG, "curMusicPath：" + curMusicId );
 
                         // 根据a-z进行排序源数据
                         Collections.sort(musicInfoList);

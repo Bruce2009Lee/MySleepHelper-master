@@ -44,6 +44,7 @@ dependencies {
     //快速Tab库
     //滑动返回Activity
     compile 'de.hdodenhof:circleimageview:2.1.0'
+
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -70,7 +71,6 @@ dependencies {
     compile 'com.github.AriesHoo:TitleBarView:2.0.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.belerweb:pinyin4j:2.5.0'
-
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
