@@ -286,6 +286,7 @@ public class PlaybarFragment extends Fragment {
             status = intent.getIntExtra(AppConstants.STATUS, 0);
             current = intent.getIntExtra(AppConstants.KEY_CURRENT, 0);
             duration = intent.getIntExtra(AppConstants.KEY_DURATION, 100);
+
             switch (status) {
                 case AppConstants.STATUS_STOP:
                     playIv.setSelected(false);
@@ -293,6 +294,10 @@ public class PlaybarFragment extends Fragment {
                     break;
                 case AppConstants.STATUS_PLAY:
                     playIv.setSelected(true);
+
+                    seekBar.setMax(duration);
+                    seekBar.setProgress(current);
+
                     break;
                 case AppConstants.STATUS_PAUSE:
                     playIv.setSelected(false);

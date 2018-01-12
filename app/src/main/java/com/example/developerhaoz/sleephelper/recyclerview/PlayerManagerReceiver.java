@@ -33,10 +33,13 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
     private int threadNumber;
     private Context context;
 
+    private static int currentMill = 0;
+
     public PlayerManagerReceiver() {
     }
 
     public PlayerManagerReceiver(Context context) {
+
         super();
         this.context = context;
         dbManager = DBManager.getInstance(context);
@@ -118,10 +121,14 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
                     playMusic(musicPath);
                 }else {
                     Log.d(TAG, "music is loaded");
+                    mediaPlayer.seekTo(currentMill);
                     mediaPlayer.start();
+
+                    new UpdateUIThread(this, context, threadNumber).start();
                 }
                 break;
             case AppConstants.COMMAND_PAUSE:
+                currentMill = mediaPlayer.getCurrentPosition();
                 mediaPlayer.pause();
                 status = AppConstants.STATUS_PAUSE;
                 break;
@@ -153,7 +160,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
 
     private void playMusic(String musicPath) {
         NumberRandom();
-        if (mediaPlayer!=null) {
+        if (mediaPlayer != null) {
             mediaPlayer.release();
         }
         mediaPlayer = new MediaPlayer();

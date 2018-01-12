@@ -42,6 +42,7 @@ public class UpdateUIThread  extends Thread{
                         Log.i(TAG, "run: getMediaPlayer().isPlaying() = " + playerManagerReceiver.getMediaPlayer().isPlaying());
                         break;
                     }
+
                     duration = playerManagerReceiver.getMediaPlayer().getDuration();
                     curPosition = playerManagerReceiver.getMediaPlayer().getCurrentPosition();
 
