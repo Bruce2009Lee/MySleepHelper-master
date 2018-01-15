@@ -1,5 +1,7 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +30,8 @@ import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import java.util.Locale;
 
+import static com.example.developerhaoz.sleephelper.recyclerview.PlayerManagerReceiver.status;
+
 public class PlayMusicActivity extends AppCompatActivity implements AdapterView.OnClickListener{
 
     private static final String TAG = PlayMusicActivity.class.getName();
@@ -51,12 +55,13 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
     private SeekBar seekBar;
     private PlayReceiver mReceiver;
 
+    private ObjectAnimator discAnimation;
+
 
     private int mProgress;
     private int duration;
     private int current;
 
-    Animation operatingAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +72,21 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
         dbManager = DBManager.getInstance(PlayMusicActivity.this);
 
         initView();
+        setAnimations();
         initPlayMode();
         initTitle();
         initPlayIv();
         register();
 
+    }
+
+    //动画设置
+    private void setAnimations() {
+
+        discAnimation = ObjectAnimator.ofFloat(bgIv, "rotation", 0, 360);
+        discAnimation.setDuration(4000);
+        discAnimation.setInterpolator(new LinearInterpolator());
+        discAnimation.setRepeatCount(ValueAnimator.INFINITE);
     }
 
     private void register() {
@@ -91,6 +106,7 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
         modeIv = (ImageView) findViewById(R.id.iv_mode);
         bgIv = (ImageView) findViewById(R.id.iv_disc_rotate);
 
+
         curTimeTv = (TextView) findViewById(R.id.tv_current_time);
         totalTimeTv = (TextView) findViewById(R.id.tv_total_time);
         musicNameTv = (TextView) findViewById(R.id.tv_title);
@@ -102,12 +118,6 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
         preIv.setOnClickListener(this);
         nextIv.setOnClickListener(this);
         modeIv.setOnClickListener(this);
-
-        operatingAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        operatingAnim.setFillAfter(true);
-        operatingAnim.setFillBefore(false);
 
     }
 
@@ -175,9 +185,22 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
                     seekBar.setProgress(current);
                     totalTimeTv.setText(formatTime(duration));
                     curTimeTv.setText(formatTime(current));
+
+                    if (discAnimation != null && !discAnimation.isRunning()) {
+                        discAnimation.start();
+                    }
+
                     break;
                 case AppConstants.STATUS_PAUSE:
                     playIv.setSelected(false);
+
+                    if (discAnimation != null) {
+                        float valueAvatar = (float) discAnimation.getAnimatedValue();
+                        discAnimation.setFloatValues(valueAvatar, 360f + valueAvatar);
+                        discAnimation.reverse();
+                        discAnimation.end();
+                    }
+
                     break;
                 case AppConstants.STATUS_RUN:
                     playIv.setSelected(true);
@@ -185,11 +208,15 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
                     seekBar.setProgress(current);
                     totalTimeTv.setText(formatTime(duration));
                     curTimeTv.setText(formatTime(current));
+
+                    if (discAnimation != null && !discAnimation.isRunning()) {
+                        discAnimation.start();
+                    }
+
                     break;
                 default:
                     break;
             }
-
 
         }
     }
@@ -216,7 +243,6 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
         return pattern.replace("mm", mm).replace("ss", ss);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -229,8 +255,10 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
             case R.id.iv_menu:
                 break;
             case R.id.iv_prev:
+                SpUtils.playPreMusic(PlayMusicActivity.this);
                 break;
             case R.id.iv_next:
+                SpUtils.playNextMusic(PlayMusicActivity.this);
                 break;
             case R.id.iv_mode:
                 break;
@@ -251,7 +279,7 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
         }
 
         //如果当前媒体在播放音乐状态，则图片显示暂停图片，按下播放键，则发送暂停媒体命令，图片显示播放图片。以此类推。
-        if (PlayerManagerReceiver.status == AppConstants.STATUS_PAUSE) {
+        if (status == AppConstants.STATUS_PAUSE) {
             Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
             intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PLAY);
 
@@ -260,22 +288,14 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
             intent.putExtra(AppConstants.KEY_CURRENT, tmpCurrent);
             intent.putExtra(AppConstants.KEY_DURATION, tmpDuration);
 
-            if (operatingAnim != null) {
-                bgIv.startAnimation(operatingAnim);
-            }
-
             sendBroadcast(intent);
-        } else if (PlayerManagerReceiver.status == AppConstants.STATUS_PLAY) {
+        } else if (status == AppConstants.STATUS_PLAY) {
 
             Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
             intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PAUSE);
 
             SpUtils.setShared("KEY_CURRENT",current);
             SpUtils.setShared("KEY_DURATION",duration);
-
-            if (operatingAnim != null) {
-                operatingAnim.cancel();
-            }
 
             sendBroadcast(intent);
         } else {
@@ -288,16 +308,25 @@ public class PlayMusicActivity extends AppCompatActivity implements AdapterView.
 
             Log.i(TAG, "onClick: path = " + path);
 
-            if (operatingAnim != null) {
-                bgIv.startAnimation(operatingAnim);
-            }
-
             sendBroadcast(intent);
         }
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        bgIv.clearAnimation();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     protected void onDestroy() {
+
         super.onDestroy();
         unregisterReceiver(mReceiver);
     }

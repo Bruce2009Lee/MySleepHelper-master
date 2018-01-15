@@ -3,6 +3,7 @@ package com.example.developerhaoz.sleephelper.recyclerview;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.developerhaoz.sleephelper.R;
@@ -18,6 +19,8 @@ import butterknife.Unbinder;
 import static com.example.developerhaoz.sleephelper.R.style.BiLiPinkTheme;
 
 public class BaseActivity extends AppCompatActivity implements IBasisView {
+
+    private static final String TAG = BaseActivity.class.getName();
 
     protected Activity mContext;
     protected View mContentView;
@@ -71,11 +74,20 @@ public class BaseActivity extends AppCompatActivity implements IBasisView {
                 setTheme(R.style.LemonOrangeTheme);
                 break;
         }
+        Log.d(TAG,"initTheme " + themeId);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        initTheme();
+        Log.d(TAG,"onResume");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
     }
 
     @Override

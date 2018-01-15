@@ -47,7 +47,7 @@ public class AppConstants {
     public static final String LABEL_LAST = "最近播放";
     public static final String LABEL_LOCAL = "本地音乐";
 
-    public static final int ACTIVITY_LOCAL = 20; //我喜爱
+    public static final int ACTIVITY_LOCAL = 20; //本地歌曲
     public static final int ACTIVITY_RECENTPLAY = 21;//最近播放
     public static final int ACTIVITY_MYLOVE = 22; //我喜爱
     public static final int ACTIVITY_MYLIST = 24;//我的歌单

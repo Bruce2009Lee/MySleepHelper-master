@@ -27,7 +27,7 @@ public class PlayBarBaseActivity extends FastMainActivity {
         if (playBarFragment == null) {
 
             playBarFragment = PlaybarFragment.newInstance();
-            ft.add(R.id.fragment_playbar_main, playBarFragment).commit();
+            ft.add(R.id.fragment_playbar, playBarFragment).commit();
         }else {
             ft.show(playBarFragment).commit();
         }

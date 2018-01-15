@@ -280,7 +280,7 @@ public class PlaybarFragment extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: ");
+//            Log.d(TAG, "onReceive: ");
 
             setMusicName();
             status = intent.getIntExtra(AppConstants.STATUS, 0);
@@ -312,5 +312,11 @@ public class PlaybarFragment extends Fragment {
             }
 
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        unRegister();
     }
 }

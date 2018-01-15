@@ -27,7 +27,7 @@ import com.example.developerhaoz.sleephelper.recyclerview.widget.MyViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalMusicActivity extends FastMainActivity {
+public class LocalMusicActivity extends PlayBarBaseActivity {
 
     private static final String TAG = LocalMusicActivity.class.getName();
     public static final int SEARCH_FINISHED=1;
@@ -78,6 +78,9 @@ public class LocalMusicActivity extends FastMainActivity {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.scan_local_menu){
             Intent intent = new Intent(LocalMusicActivity.this,ScanActivity.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(LocalMusicActivity.this,MP3PlayerActivity.class);
             startActivity(intent);
         }
         return true;
@@ -160,6 +163,4 @@ public class LocalMusicActivity extends FastMainActivity {
             return fragments.size();
         }
     }
-
-
 }

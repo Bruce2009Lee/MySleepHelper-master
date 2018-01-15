@@ -16,11 +16,8 @@
             android:id="@+id/home_activity_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
         <com.example.developerhaoz.sleephelper.test.CycleViewPager
             android:id="@+id/cycle_view"
@@ -64,7 +61,7 @@
                         android:layout_toRightOf="@+id/iv_local"
                         android:text="本地音乐"
                         android:textAllCaps="false"
-                        android:textSize="20dp" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:id="@+id/iv_local_right"
@@ -84,7 +81,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_toLeftOf="@id/iv_local_right"
                         android:text="0"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
 
                 </RelativeLayout>
@@ -120,7 +117,7 @@
                         android:layout_toRightOf="@+id/iv_recent"
                         android:text="最近播放"
                         android:textAllCaps="false"
-                        android:textSize="20dp" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:id="@+id/iv_recent_right"
@@ -140,7 +137,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_toLeftOf="@id/iv_recent_right"
                         android:text="0"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -174,7 +171,7 @@
                         android:layout_toRightOf="@+id/iv_love"
                         android:text="我喜欢的"
                         android:textAllCaps="false"
-                        android:textSize="20dp" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:id="@+id/iv_love_right"
@@ -190,13 +187,13 @@
                         android:id="@+id/tv_love_songs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:text="0"
-                        android:textSize="18dp"
-                        android:layout_centerInParent="true"
                         android:layout_alignBottom="@+id/tv_love_txt"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
                         android:layout_toStartOf="@+id/iv_love_right"
-                        android:layout_marginEnd="15dp" />
+                        android:text="0"
+                        android:textSize="14dp" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -204,7 +201,7 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/fragment_playbar_main"
+            android:id="@+id/fragment_playbar"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_alignParentBottom="true"

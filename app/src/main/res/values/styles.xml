@@ -98,6 +98,10 @@
         <!--<item name="buttonBg">#000090</item>-->
         <!--<item name="buttonTextColor">#008811</item>-->
     <!--</style>-->
+    <style name="pop_window_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit</item>
+    </style>
 
 
 </resources>

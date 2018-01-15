@@ -25,12 +25,12 @@ import com.example.developerhaoz.sleephelper.util.AppConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener{
+public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener {
 
     private static final String TAG = MP3PlayerActivity.class.getName();
 
     private Toolbar toolbar;
-    private LinearLayout linearLayout_local,linearLayout_recent,linearLayout_love;
+    private LinearLayout linearLayout_local, linearLayout_recent, linearLayout_love;
     private NavigationView homeNavigationView;
 
     private TextView localSong;
@@ -73,7 +73,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         initView();
     }
 
-    public void initData(){
+    public void initData() {
 
         mList.add(new Info("标题1", "http://img2.3lian.com/2014/c7/25/d/40.jpg"));
         mList.add(new Info("标题2", "http://img2.3lian.com/2014/c7/25/d/41.jpg"));
@@ -82,7 +82,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     }
 
-    public void initView(){
+    public void initView() {
 
         linearLayout_local = (LinearLayout) findViewById(R.id.ll_local);
         localSong = (TextView) findViewById(R.id.tv_local_songs);
@@ -127,18 +127,18 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 homeDrawerLayout.closeDrawers();
 
-                switch (item.getItemId()){
-                   case  R.id.menu_me_item_theme:
+                switch (item.getItemId()) {
+                    case R.id.menu_me_item_theme:
 //                       Toast.makeText(MP3PlayerActivity.this,"onSelected " + item.getItemId(),Toast.LENGTH_SHORT).show();
 //                       isStartTheme = true;
-                       Intent intentTheme = new Intent(MP3PlayerActivity.this,ThemeActivity.class);
-                       startActivity(intentTheme);
-                       break;
-                    case  R.id.menu_me_item_night:
+                        Intent intentTheme = new Intent(MP3PlayerActivity.this, ThemeActivity.class);
+                        startActivity(intentTheme);
                         break;
-                    case  R.id.menu_me_item_about:
+                    case R.id.menu_me_item_night:
                         break;
-                    case  R.id.menu_me_item_logout:
+                    case R.id.menu_me_item_about:
+                        break;
+                    case R.id.menu_me_item_logout:
                         break;
 
                 }
@@ -148,8 +148,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         });
 
         int songNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
-        Log.d(TAG,"songNum :" + songNum);
-        if (0 != songNum){
+        Log.d(TAG, "songNum :" + songNum);
+
+        if (0 != songNum) {
             localSong.setText("" + songNum);
         }
 
@@ -159,15 +160,15 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     public void onClick(View v) {
 
         Intent intent = null;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_local:
-                intent = new Intent(MP3PlayerActivity.this,LocalMusicActivity.class);
+                intent = new Intent(MP3PlayerActivity.this, LocalMusicActivity.class);
                 break;
             case R.id.ll_recent:
-                intent = new Intent(MP3PlayerActivity.this,RecentMusicActivity.class);
+                intent = new Intent(MP3PlayerActivity.this, RecentMusicActivity.class);
                 break;
             case R.id.ll_love:
-                intent = new Intent(MP3PlayerActivity.this,FavoriteMusicActivity.class);
+                intent = new Intent(MP3PlayerActivity.this, FavoriteMusicActivity.class);
                 break;
         }
         startActivity(intent);
@@ -176,9 +177,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     @Override
     public void onBackPressed() {
 
-        if (homeDrawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (homeDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             homeDrawerLayout.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -200,5 +201,16 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             };
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        int songNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
+
+        if (0 != songNum) {
+            localSong.setText("" + songNum);
+        }
+
+
+    }
 }

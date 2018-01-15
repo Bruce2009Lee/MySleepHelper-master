@@ -78,7 +78,17 @@ public class ThemeActivity extends FastMainActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(ThemeActivity.this, MP3PlayerActivity.class);
+                startActivity(intent);
+        }
+        return true;
+    }
 
     private class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ViewHolder>{
 

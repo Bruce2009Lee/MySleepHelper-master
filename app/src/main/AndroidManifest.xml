@@ -48,7 +48,7 @@
         <activity android:name=".test.ActivityTestWebCacheMain" />
         <activity android:name=".test.ActivityTestSaveToFile" />
         <activity android:name=".test.PuRecyclerViewActivity" />
-        <activity android:name=".recyclerview.RecyclerViewMainActivity"></activity>
+        <activity android:name=".recyclerview.RecyclerViewMainActivity" />
         <activity android:name=".test.LinearRecyclerViewActivity" />
         <activity android:name=".test.MixRecyclerViewActivity" />
         <activity android:name=".test.CustomDialogActivity" />
@@ -64,37 +64,33 @@
             </intent-filter>
         </activity>
         <activity android:name=".test.GlideTestActivity" />
+        <activity android:name=".recyclerview.MP3PlayerActivity" />
         <activity
-            android:name=".recyclerview.MP3PlayerActivity"
+            android:name=".recyclerview.LocalMusicActivity"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".recyclerview.LocalMusicActivity" />
-        <activity
-            android:name=".recyclerview.FavoriteMusicActivity" />
-        <activity
-            android:name=".recyclerview.RecentMusicActivity" />
+        <activity android:name=".recyclerview.FavoriteMusicActivity" />
+        <activity android:name=".recyclerview.RecentMusicActivity" />
         <activity
             android:name=".recyclerview.ThemeActivity"
             android:label="主题中心"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".recyclerview.BaseActivity" />
-        <activity
-            android:name=".recyclerview.TabbarActivity" />
-        <activity
-            android:name=".recyclerview.ScanActivity" />
-        <activity
-            android:name=".recyclerview.PlayBarBaseActivity" />
-        <activity
-            android:name=".recyclerview.PlayMusicActivity"/>
+        <activity android:name=".recyclerview.BaseActivity" />
+        <activity android:name=".recyclerview.TabbarActivity" />
+        <activity android:name=".recyclerview.ScanActivity" />
+        <activity android:name=".recyclerview.PlayBarBaseActivity" />
+        <activity android:name=".recyclerview.PlayMusicActivity" />
+
         <service
             android:name=".recyclerview.PlayMusicService"
             android:enabled="true"
             android:exported="true" />
+
         <receiver
             android:name=".recyclerview.PlayerManagerReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+        <activity android:name=".recyclerview.AboutMeActivity"></activity>
     </application>
 
 </manifest>

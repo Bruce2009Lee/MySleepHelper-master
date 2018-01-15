@@ -3,6 +3,7 @@ package com.example.developerhaoz.sleephelper.util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class SpUtils {
         int preSelect = getTheme(context);
         SharedPreferences sharedPreferences = context.getSharedPreferences("theme", Context.MODE_PRIVATE);
         sharedPreferences.edit().putInt("theme_select", position).commit();
-        Toast.makeText(context,"save " + position,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context,"save " + position,Toast.LENGTH_SHORT).show();
         if (preSelect != 8) {
             sharedPreferences.edit().putInt("pre_theme_select", preSelect).commit();
         }
@@ -42,7 +43,7 @@ public class SpUtils {
     //得到主题
     public static int getTheme(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("theme", Context.MODE_PRIVATE);
-        Toast.makeText(context,"read " + sharedPreferences.getInt("theme_select", 0),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context,"read " + sharedPreferences.getInt("theme_select", 0),Toast.LENGTH_SHORT).show();
         return sharedPreferences.getInt("theme_select", 0);
 
     }
@@ -120,6 +121,44 @@ public class SpUtils {
                 break;
         }
         return musicInfoList;
+    }
+
+    public static void playPreMusic(Context context){
+
+        //获取下一首ID
+        DBManager dbManager = DBManager.getInstance(context);
+        int playMode = SpUtils.getIntShared(AppConstants.KEY_MODE);
+
+        Log.d(TAG,"pre play mode ="+playMode);
+
+        int musicId = SpUtils.getIntShared(AppConstants.KEY_ID);
+        List<MusicInfo> musicList = getCurPlayList(context);
+        ArrayList<Integer> musicIdList =new ArrayList<>();
+        for (MusicInfo info : musicList){
+            musicIdList.add(info.getId());
+        }
+        musicId = dbManager.getPreMusic(musicIdList,musicId,playMode);
+        SpUtils.setShared(AppConstants.KEY_ID,musicId);
+
+        if (musicId == -1) {
+            Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
+            intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_STOP);
+            context.sendBroadcast(intent);
+            Toast.makeText(context, "歌曲不存在",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //获取播放歌曲路径
+        String path = dbManager.getMusicPath(musicId);
+
+        Log.d(TAG,"pre path ="+path);
+        //发送播放请求
+        Log.d(TAG,"pre  id = "+musicId+"path = "+ path);
+
+        Intent intent = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
+        intent.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_PLAY);
+        intent.putExtra(AppConstants.KEY_PATH, path);
+        context.sendBroadcast(intent);
     }
 
     public static void playNextMusic(Context context){
@@ -296,6 +335,15 @@ public class SpUtils {
         }else{
             value = pref.getInt(key, -1);
         }
+        return value;
+    }
+
+    public static int getAttrColorValue(int attr, int defaultColor, Context context) {
+
+        int[] attrsArray = {attr};
+        TypedArray typedArray = context.obtainStyledAttributes(attrsArray);
+        int value = typedArray.getColor(0, defaultColor);
+        typedArray.recycle();
         return value;
     }
 }
