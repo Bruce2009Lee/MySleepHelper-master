@@ -135,7 +135,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
             case AppConstants.COMMAND_STOP: //本程序停止状态都是删除当前播放音乐触发
                 NumberRandom();
                 status = AppConstants.STATUS_STOP;
-                if(mediaPlayer!=null) {
+                if(mediaPlayer != null) {
                     mediaPlayer.stop();
                 }
 //                initStopOperate();
@@ -148,7 +148,7 @@ public class PlayerManagerReceiver extends BroadcastReceiver {
             case AppConstants.COMMAND_RELEASE:
                 NumberRandom();
                 status = AppConstants.STATUS_STOP;
-                if(mediaPlayer!=null) {
+                if(mediaPlayer != null) {
                     mediaPlayer.stop();
                     mediaPlayer.release();
                 }

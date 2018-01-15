@@ -127,22 +127,30 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 homeDrawerLayout.closeDrawers();
 
+                Intent intent = null;
+
                 switch (item.getItemId()) {
                     case R.id.menu_me_item_theme:
-//                       Toast.makeText(MP3PlayerActivity.this,"onSelected " + item.getItemId(),Toast.LENGTH_SHORT).show();
-//                       isStartTheme = true;
-                        Intent intentTheme = new Intent(MP3PlayerActivity.this, ThemeActivity.class);
-                        startActivity(intentTheme);
+                        intent = new Intent(MP3PlayerActivity.this, ThemeActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.menu_me_item_night:
                         break;
                     case R.id.menu_me_item_about:
+                        intent = new Intent(MP3PlayerActivity.this, AboutMeActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.menu_me_item_logout:
+                        finish();
+                        Intent intentBroadcast = new Intent(PlayMusicService.PLAYER_MANAGER_ACTION);
+                        intentBroadcast.putExtra(AppConstants.COMMAND, AppConstants.COMMAND_RELEASE);
+                        sendBroadcast(intentBroadcast);
+
+                        Intent stopIntent = new Intent(MP3PlayerActivity.this,PlayMusicService.class);
+                        stopService(stopIntent);
                         break;
 
                 }
-
                 return true;
             }
         });

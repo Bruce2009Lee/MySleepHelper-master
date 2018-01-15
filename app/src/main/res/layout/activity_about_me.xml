@@ -20,7 +20,163 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/circle" />
 
+        <TextView
+            android:id="@+id/about_version"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="当前版本0.1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="?attr/divider"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:textSize="16dp"
+            android:text="关于作者" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|bottom"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:textSize="14dp"
+                android:text="邮箱" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|top"
+                android:paddingLeft="20dp"
+                android:paddingTop="3dp"
+                android:textSize="14dp"
+                android:text="zhonglianli2009@gmail.com" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?attr/divider"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|bottom"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:textSize="14dp"
+                android:text="Github" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|top"
+                android:paddingLeft="20dp"
+                android:paddingTop="3dp"
+                android:textSize="14dp"
+                android:text="https://github.com/zhonglianli/" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="?attr/divider"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textSize="14dp"
+                android:text="其他" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?attr/divider"></View>
+
+        <LinearLayout
+            android:id="@+id/about_star_ll"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/selector_layout"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|bottom"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:textSize="14dp"
+                android:text="给我点赞" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|top"
+                android:paddingLeft="20dp"
+                android:paddingTop="3dp"
+                android:text="前往我的github项目给个star"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?attr/divider"></View>
+
+        <LinearLayout
+            android:id="@+id/about_score_ll"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/selector_layout"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|bottom"
+                android:paddingBottom="3dp"
+                android:paddingLeft="20dp"
+                android:textSize="14dp"
+                android:text="给个评价" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical|top"
+                android:paddingLeft="20dp"
+                android:paddingTop="3dp"
+                android:textSize="14dp"
+                android:text="前往应用商店评价或评分" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="?attr/divider"></View>
     </LinearLayout>
 
+
 </LinearLayout>
+
