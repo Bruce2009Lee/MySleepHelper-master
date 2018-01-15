@@ -74,15 +74,6 @@
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/pre-dexed/debug/pinyin4j-2.5.0_e95d52307e4470214feeb045438754745c49c10e.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/lizhonglian/.android/build-cache/fcb2cd6d68c2039c06de5161276b559b52277e06/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="063704a7e5384b1e55276ffdbb73c311605e99f4">
-        <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5ae73459077a5515e1347f5ac8bf59e1ca3f037d/classes.dex" />
-    </item>
-    <item
         is-multidex="false"
         jar="/Users/lizhonglian/.android/build-cache/647323de23b7014466e331f72956f70e809e10ef/output/jars/classes.jar"
         jumboMode="false"
@@ -106,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="20ba15eacc4d12855594c636424cd5598ff83bf5">
+        sha1="e2ed6e8bd7b86de7c5d2ed1c01196bf09fab34a1">
         <dex dex="/Users/lizhonglian/Downloads/Firefox版本/SleepHelper-master-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_428de0e668de1d276f3a010c31f836b570466d2b/classes.dex" />
     </item>
     <item
