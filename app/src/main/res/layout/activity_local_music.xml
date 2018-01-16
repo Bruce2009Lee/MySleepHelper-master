@@ -52,7 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/appbg"
-        android:layout_below="@id/local_shadow"/>
+        android:layout_below="@id/local_shadow"
+        android:layout_above="@+id/fragment_playbar"/>
 
     <FrameLayout
         android:id="@+id/fragment_playbar"

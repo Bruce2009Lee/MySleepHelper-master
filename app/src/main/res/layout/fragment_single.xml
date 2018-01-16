@@ -40,5 +40,23 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
+    <com.example.developerhaoz.sleephelper.util.SideBar
+        android:id="@+id/local_music_siderbar"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@id/local_music_playmode_rl"/>
 
+    <TextView
+        android:id="@+id/local_music_siderbar_pre_tv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:background="?attr/colorPrimary"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/grey700"
+        android:textSize="30dp"/>
 </RelativeLayout>

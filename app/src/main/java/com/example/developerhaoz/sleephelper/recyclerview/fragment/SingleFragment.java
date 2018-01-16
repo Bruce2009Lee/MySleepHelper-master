@@ -27,6 +27,7 @@ import com.example.developerhaoz.sleephelper.recyclerview.MusicPopMenuWindow;
 import com.example.developerhaoz.sleephelper.recyclerview.adapter.RecyclerViewAdapter;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.MusicInfo;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
+import com.example.developerhaoz.sleephelper.util.SideBar;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class SingleFragment extends Fragment {
     private TextView playModeTv;
     private RecyclerView recyclerView;
     public  RecyclerViewAdapter recyclerViewAdapter;
+    private SideBar sideBar;
+    private TextView sideBarPreTv;
 
     private List<MusicInfo> musicInfoList = new ArrayList<>();
     private DBManager dbManager;
@@ -76,6 +79,20 @@ public class SingleFragment extends Fragment {
         playModeRl = (RelativeLayout) view.findViewById(R.id.local_music_playmode_rl);
         playModeIv = (ImageView) view.findViewById(R.id.local_music_playmode_iv);
         playModeTv = (TextView) view.findViewById(R.id.local_music_playmode_tv);
+
+        sideBarPreTv = (TextView) view.findViewById(R.id.local_music_siderbar_pre_tv);
+        sideBar = (SideBar)view.findViewById(R.id.local_music_siderbar);
+        sideBar.setTextView(sideBarPreTv);
+        sideBar.setOnListener(new SideBar.OnTouchingLetterChangedListener() {
+            @Override
+            public void onTouchingLetterChanged(String letter) {
+                //该字母首次出现的位置
+                int position = recyclerViewAdapter.getPositionForSection(letter.charAt(0));
+                if(position != -1){
+                    recyclerView.smoothScrollToPosition(position);
+                }
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -12,13 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.database.DBManager;
+import com.example.developerhaoz.sleephelper.recyclerview.adapter.HomeListViewAdapter;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
+import com.example.developerhaoz.sleephelper.recyclerview.entity.PlayListInfo;
 import com.example.developerhaoz.sleephelper.test.CycleViewPager;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 
@@ -31,15 +35,24 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     private Toolbar toolbar;
     private LinearLayout linearLayout_local, linearLayout_recent, linearLayout_love;
+    private LinearLayout myListTitleLl;
     private NavigationView homeNavigationView;
 
     private TextView localSong;
     private TextView latelySong;
     private TextView favSong;
 
+    private ImageView myPLArrowIv;
+    private ListView listView;
+
+    private HomeListViewAdapter adapter;
+
     private DBManager dbManager;
+    private List<PlayListInfo> playListInfos;
 
     private DrawerLayout homeDrawerLayout;
+
+    private boolean isOpenMyPL = false; //标识我的歌单列表打开状态
 
     /**
      * 模拟请求后得到的数据
@@ -92,6 +105,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         favSong = (TextView) findViewById(R.id.tv_love_songs);
         homeDrawerLayout = (DrawerLayout) findViewById(R.id.home_dl_main);
         homeNavigationView = (NavigationView) findViewById(R.id.nav_view_main);
+        myListTitleLl = (LinearLayout) findViewById(R.id.home_my_list_title_ll);
+        myPLArrowIv = (ImageView) findViewById(R.id.home_my_pl_arror_iv);
+        listView = (ListView) findViewById(R.id.home_my_list_lv);
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -152,6 +168,31 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
                 }
                 return true;
+            }
+        });
+
+        playListInfos = dbManager.getMyPlayList();
+        adapter = new HomeListViewAdapter(playListInfos,this,dbManager);
+        listView.setAdapter(adapter);
+
+        myListTitleLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MP3PlayerActivity.this,"点击了 List",Toast.LENGTH_SHORT).show();
+
+                if (isOpenMyPL){
+                    isOpenMyPL = false;
+                    myPLArrowIv.setImageResource(R.drawable.arrow_right);
+                    listView.setVisibility(View.GONE);
+                }else {
+                    isOpenMyPL = true;
+                    myPLArrowIv.setImageResource(R.drawable.arrow_down);
+                    listView.setVisibility(View.VISIBLE);
+                    /*playListInfos = dbManager.getMyPlayList();
+                    adapter = new HomeListViewAdapter(playListInfos,MP3PlayerActivity.this,dbManager);
+                    listView.setAdapter(adapter);*/
+                }
+
             }
         });
 

@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 
 public class PlayListInfo implements Parcelable {
+
     private int id;
     private String name;
     private int count;

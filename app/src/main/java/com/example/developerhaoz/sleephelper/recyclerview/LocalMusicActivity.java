@@ -5,9 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,12 +14,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
-import com.example.developerhaoz.sleephelper.common.view.MyAdapter;
 import com.example.developerhaoz.sleephelper.recyclerview.fragment.AlbumFragment;
 import com.example.developerhaoz.sleephelper.recyclerview.fragment.FolderFragment;
 import com.example.developerhaoz.sleephelper.recyclerview.fragment.SingerFragment;
 import com.example.developerhaoz.sleephelper.recyclerview.fragment.SingleFragment;
-import com.example.developerhaoz.sleephelper.recyclerview.widget.FastMainActivity;
 import com.example.developerhaoz.sleephelper.recyclerview.widget.MyViewPager;
 
 import java.util.ArrayList;
@@ -88,7 +84,7 @@ public class LocalMusicActivity extends PlayBarBaseActivity {
 
     public void initView(){
 
-        addTapData();
+        addTabData();
 
         viewPager = (MyViewPager)findViewById(R.id.local_viewPager);
         tabLayout = (TabLayout)findViewById(R.id.local_tab);
@@ -111,7 +107,7 @@ public class LocalMusicActivity extends PlayBarBaseActivity {
 
     }
 
-    private void addTapData(){
+    private void addTabData(){
 
         titleList.add("单曲");
         titleList.add("歌手");

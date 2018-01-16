@@ -52,12 +52,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getPositionForSection(int sectionIndex) {
-        return 0;
+        for (int i = 0; i < getItemCount(); i++) {
+            char firstChar = musicInfoList.get(i).getFirstLetter().charAt(0);
+            if (firstChar == sectionIndex) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int getSectionForPosition(int position) {
-        return 0;
+        return musicInfoList.get(position).getFirstLetter().charAt(0);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{

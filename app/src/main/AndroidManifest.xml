@@ -91,6 +91,7 @@
             android:exported="true" />
 
         <activity android:name=".recyclerview.AboutMeActivity"></activity>
+        <activity android:name=".recyclerview.PlaylistActivity"></activity>
     </application>
 
 </manifest>
