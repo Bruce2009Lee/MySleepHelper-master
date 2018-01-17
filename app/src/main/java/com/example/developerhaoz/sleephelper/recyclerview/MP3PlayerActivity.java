@@ -1,5 +1,6 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -24,14 +25,19 @@ import com.example.developerhaoz.sleephelper.recyclerview.adapter.HomeListViewAd
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.PlayListInfo;
 import com.example.developerhaoz.sleephelper.test.CycleViewPager;
+import com.example.developerhaoz.sleephelper.util.ActivityStackUtil;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
+import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity.CHANGE;
+
 public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener {
 
     private static final String TAG = MP3PlayerActivity.class.getName();
+    public static MP3PlayerActivity instance;
 
     private Toolbar toolbar;
     private LinearLayout linearLayout_local, linearLayout_recent, linearLayout_love;
@@ -54,6 +60,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     private boolean isOpenMyPL = false; //标识我的歌单列表打开状态
 
+
+
     /**
      * 模拟请求后得到的数据
      */
@@ -66,7 +74,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mp3_player);
 
         toolbar = (Toolbar) findViewById(R.id.home_activity_toolbar);
@@ -76,6 +86,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("爱音乐");
         }
+
+        instance = MP3PlayerActivity.this;
 
         dbManager = DBManager.getInstance(MP3PlayerActivity.this);
 
@@ -181,6 +193,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
                 Toast.makeText(MP3PlayerActivity.this,"点击了 List",Toast.LENGTH_SHORT).show();
 
                 if (isOpenMyPL){
+
                     isOpenMyPL = false;
                     myPLArrowIv.setImageResource(R.drawable.arrow_right);
                     listView.setVisibility(View.GONE);
@@ -255,11 +268,22 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         super.onResume();
 
         int songNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
-
+        int themeID = SpUtils.getTheme(this);
+        setTheme(themeID);
+        Log.d(TAG,"onResume" + themeID);
         if (0 != songNum) {
             localSong.setText("" + songNum);
         }
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
+    @Override
+    protected void onRestart() {
+        Log.d(TAG,"onRestart");
+        super.onRestart();
     }
 }

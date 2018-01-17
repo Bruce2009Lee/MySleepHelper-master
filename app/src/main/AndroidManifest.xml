@@ -64,7 +64,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".test.GlideTestActivity" />
-        <activity android:name=".recyclerview.MP3PlayerActivity" />
+        <activity
+            android:name=".recyclerview.MP3PlayerActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".recyclerview.LocalMusicActivity"
             android:launchMode="singleTask" />

@@ -1,5 +1,6 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -28,6 +29,8 @@ import java.util.List;
 public class ThemeActivity extends FastMainActivity {
 
     public static int THEME_SIZE = 9;
+
+    public static final String CHANGE = "CHANGE";
 
     private String[] themeType = {"哔哩粉", "知乎蓝", "酷安绿","网易红","藤萝紫","碧海蓝","樱草绿","咖啡棕","柠檬橙"};
     private int[] colors = {R.color.biliPink, R.color.zhihuBlue, R.color.kuanGreen, R.color.cloudRed,
@@ -84,7 +87,11 @@ public class ThemeActivity extends FastMainActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
+                //结束MP3PlayerActivity
+                MP3PlayerActivity.instance.finish();
                 Intent intent = new Intent(ThemeActivity.this, MP3PlayerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("CURRENT_THEME",SpUtils.getTheme(ThemeActivity.this));
                 startActivity(intent);
         }
         return true;

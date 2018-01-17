@@ -14,8 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
+import com.example.developerhaoz.sleephelper.recyclerview.widget.FastMainActivity;
 
-public class AboutMeActivity extends AppCompatActivity {
+public class AboutMeActivity extends FastMainActivity {
 
 
     private static final String TAG = AboutMeActivity.class.getName();

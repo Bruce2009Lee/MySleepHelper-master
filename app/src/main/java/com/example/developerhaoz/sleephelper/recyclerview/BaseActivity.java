@@ -30,18 +30,21 @@ public class BaseActivity extends AppCompatActivity implements IBasisView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initTheme();
+
         super.onCreate(savedInstanceState);
         mContext = this;
         mContentView = View.inflate(mContext, getContentLayout(), null);
+
         setContentView(mContentView);
         mUnBinder = ButterKnife.bind(this);
 
-        initTheme();
-
         mIsViewLoaded = true;
+
+        ActivityStackUtil.getInstance().push(this);
     }
 
-    private void initTheme(){
+    protected void initTheme(){
 
         int themeId = SpUtils.getTheme(BaseActivity.this);
         switch (themeId){
@@ -126,7 +129,6 @@ public class BaseActivity extends AppCompatActivity implements IBasisView {
         if (getContentBackground() > 0) {
             mContentView.setBackgroundResource(getContentBackground());
         }
-
     }
 
     @Override
