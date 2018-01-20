@@ -92,8 +92,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".recyclerview.AboutMeActivity"></activity>
-        <activity android:name=".recyclerview.PlaylistActivity"></activity>
+        <activity android:name=".recyclerview.AboutMeActivity" />
+        <activity android:name=".recyclerview.PlaylistActivity" />
+        <activity android:name=".recyclerview.EmailLoginActivity"></activity>
     </application>
 
 </manifest>

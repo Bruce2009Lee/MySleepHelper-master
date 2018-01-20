@@ -1,6 +1,5 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,14 +25,11 @@ import com.example.developerhaoz.sleephelper.recyclerview.adapter.HomeListViewAd
 import com.example.developerhaoz.sleephelper.recyclerview.entity.Info;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.PlayListInfo;
 import com.example.developerhaoz.sleephelper.test.CycleViewPager;
-import com.example.developerhaoz.sleephelper.util.ActivityStackUtil;
 import com.example.developerhaoz.sleephelper.util.AppConstants;
 import com.example.developerhaoz.sleephelper.util.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity.CHANGE;
 
 public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnClickListener {
 
@@ -47,6 +44,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     private TextView localSong;
     private TextView latelySong;
     private TextView favSong;
+
+    private RelativeLayout headLayout;
+    private ImageView circleMe;
 
     private ImageView myPLArrowIv;
     private ListView listView;
@@ -120,6 +120,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         myListTitleLl = (LinearLayout) findViewById(R.id.home_my_list_title_ll);
         myPLArrowIv = (ImageView) findViewById(R.id.home_my_pl_arror_iv);
         listView = (ListView) findViewById(R.id.home_my_list_lv);
+        headLayout = (RelativeLayout) homeNavigationView.inflateHeaderView(R.layout.navigation_head_layout);
+        circleMe = (ImageView) headLayout.findViewById(R.id.circle_me);
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -149,6 +151,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         linearLayout_local.setOnClickListener(this);
         linearLayout_recent.setOnClickListener(this);
         linearLayout_love.setOnClickListener(this);
+        circleMe.setOnClickListener(this);
 
         homeNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -225,15 +228,29 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.ll_local:
                 intent = new Intent(MP3PlayerActivity.this, LocalMusicActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_recent:
                 intent = new Intent(MP3PlayerActivity.this, RecentMusicActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_love:
                 intent = new Intent(MP3PlayerActivity.this, FavoriteMusicActivity.class);
+                startActivity(intent);
                 break;
+            case R.id.circle_me:
+                intent = new Intent(MP3PlayerActivity.this, EmailLoginActivity.class);
+                startActivityForResult(intent,0);
         }
-        startActivity(intent);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1){
+
+        }
     }
 
     @Override
