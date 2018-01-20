@@ -10,6 +10,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.developerhaoz.sleephelper.recyclerview.PlayMusicService;
 
+import org.xutils.x;
+
 /**
  * 自定义的 Application
  *
@@ -31,6 +33,9 @@ public class SleepApplication extends Application {
         Log.d("SleepApplicationLL ","onCreate");
 
         requestQueue = Volley.newRequestQueue(mContext);
+
+        x.Ext.init(this);
+        x.Ext.setDebug(false);
     }
 
     public static Context getContext(){

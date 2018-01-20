@@ -13,8 +13,19 @@ import com.example.developerhaoz.sleephelper.recyclerview.PlayMusicService;
 import com.example.developerhaoz.sleephelper.recyclerview.ThemeActivity;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.MusicInfo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.internal.Utils;
 
 import static com.example.developerhaoz.sleephelper.common.SleepApplication.getContext;
 
@@ -346,4 +357,5 @@ public class SpUtils {
         typedArray.recycle();
         return value;
     }
+
 }

@@ -70,9 +70,12 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.belerweb:pinyin4j:2.5.0'
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
+    compile 'org.xutils:xutils:3.5.0'
+    compile 'com.google.firebase:firebase-auth:10.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 }
+apply plugin: 'com.google.gms.google-services'

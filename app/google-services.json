@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "254379791933",
+    "firebase_url": "https://limusic-50f30.firebaseio.com",
+    "project_id": "limusic-50f30",
+    "storage_bucket": "limusic-50f30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254379791933:android:754515fc0cdd8e73",
+        "android_client_info": {
+          "package_name": "com.example.developerhaoz.sleephelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254379791933-uss91huscv9v44f9smsub86tmsqqm61s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXwtErxa5ZXOCwgtMT7EXSYfCVbi2Z8t8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
