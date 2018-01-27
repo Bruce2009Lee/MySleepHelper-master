@@ -138,13 +138,15 @@ public class SingleFragment extends Fragment {
         musicInfoList = dbManager.getAllMusicFromMusicTable();
         Collections.sort(musicInfoList);
         recyclerViewAdapter.updateMusicInfoList(musicInfoList);
+
         Log.d(TAG, "updateView: musicInfoList.size() = " + musicInfoList.size());
+
         if (musicInfoList.size() == 0){
-//            sideBar.setVisibility(View.GONE);
+            sideBar.setVisibility(View.GONE);
             playModeRl.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
         }else {
-//            sideBar.setVisibility(View.VISIBLE);
+            sideBar.setVisibility(View.VISIBLE);
             playModeRl.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.VISIBLE);
         }

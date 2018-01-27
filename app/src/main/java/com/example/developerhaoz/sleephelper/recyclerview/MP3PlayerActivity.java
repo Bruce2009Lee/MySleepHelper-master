@@ -1,5 +1,6 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,10 +9,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,9 +49,11 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
     private TextView localSong;
     private TextView latelySong;
     private TextView favSong;
+    private TextView myPLCountTv;
 
     private RelativeLayout headLayout;
     private ImageView circleMe;
+    private ImageView myPLAddIv;
 
     private ImageView myPLArrowIv;
     private ListView listView;
@@ -60,7 +67,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     private boolean isOpenMyPL = false; //标识我的歌单列表打开状态
 
-
+    private int count;
 
     /**
      * 模拟请求后得到的数据
@@ -122,6 +129,8 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         listView = (ListView) findViewById(R.id.home_my_list_lv);
         headLayout = (RelativeLayout) homeNavigationView.inflateHeaderView(R.layout.navigation_head_layout);
         circleMe = (ImageView) headLayout.findViewById(R.id.circle_me);
+        myPLCountTv = (TextView) findViewById(R.id.home_my_list_count_tv);
+        myPLAddIv = (ImageView) findViewById(R.id.home_my_pl_add_iv);
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -186,6 +195,39 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
             }
         });
 
+        myPLAddIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //添加歌单
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MP3PlayerActivity.this);
+                View view = LayoutInflater.from(MP3PlayerActivity.this).inflate(R.layout.dialog_create_playlist,null);
+                final EditText playlistEt = (EditText)view.findViewById(R.id.dialog_playlist_name_et);
+                builder.setView(view);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = playlistEt.getText().toString();
+                        if (TextUtils.isEmpty(name)) {
+                            Toast.makeText(MP3PlayerActivity.this,"请输入歌单名",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        dbManager.createPlaylist(name);
+                        dialog.dismiss();
+                        adapter.updateDataList();
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();//配置好后再builder show
+            }
+        });
+
         playListInfos = dbManager.getMyPlayList();
         adapter = new HomeListViewAdapter(playListInfos,this,dbManager);
         listView.setAdapter(adapter);
@@ -193,7 +235,7 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
         myListTitleLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MP3PlayerActivity.this,"点击了 List",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MP3PlayerActivity.this,"点击了 List",Toast.LENGTH_SHORT).show();
 
                 if (isOpenMyPL){
 
@@ -204,9 +246,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
                     isOpenMyPL = true;
                     myPLArrowIv.setImageResource(R.drawable.arrow_down);
                     listView.setVisibility(View.VISIBLE);
-                    /*playListInfos = dbManager.getMyPlayList();
+                    playListInfos = dbManager.getMyPlayList();
                     adapter = new HomeListViewAdapter(playListInfos,MP3PlayerActivity.this,dbManager);
-                    listView.setAdapter(adapter);*/
+                    listView.setAdapter(adapter);
                 }
 
             }
@@ -245,12 +287,9 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1){
-
-        }
+    public void updatePlaylistCount(){
+        count = dbManager.getMusicCount(AppConstants.LIST_MYPLAY);
+        myPLCountTv.setText("(" + count + ")");
     }
 
     @Override
@@ -279,28 +318,24 @@ public class MP3PlayerActivity extends PlayBarBaseActivity implements View.OnCli
                 }
             };
 
+    public void updateDataList(){
+        List<PlayListInfo> dataList = new ArrayList<>();
+        dataList = dbManager.getMyPlayList();
+        playListInfos.clear();
+        playListInfos.addAll(dataList);
+        updatePlaylistCount();
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        int songNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
-        int themeID = SpUtils.getTheme(this);
-        setTheme(themeID);
-        Log.d(TAG,"onResume" + themeID);
-        if (0 != songNum) {
-            localSong.setText("" + songNum);
+        int localSongNum = dbManager.getMusicCount(AppConstants.LIST_ALLMUSIC);
+        if (0 != localSongNum) {
+            localSong.setText("" + localSongNum);
         }
+
+        adapter.updateDataList();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onRestart() {
-        Log.d(TAG,"onRestart");
-        super.onRestart();
-    }
 }

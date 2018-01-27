@@ -39,7 +39,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
 
 
     private Button btn_pu,btn_linear,btn_mix,btn_customDialog,btn_popWindow,btn_fragment;
-    private Button btn_iosDialog,btn_glide,btn_mp3,btn_tab_bar;
+    private Button btn_iosDialog,btn_glide,btn_mp3,btn_tab_bar,btn_retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         btn_glide = (Button) findViewById(R.id.btn_glide);
         btn_mp3 = (Button) findViewById(R.id.btn_mp3);
         btn_tab_bar = (Button) findViewById(R.id.btn_tab_bar);
+        btn_retrofit = (Button) findViewById(R.id.btn_tab_retrofit);
 
 
         btn_pu.setOnClickListener(this);
@@ -85,6 +86,7 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
         btn_glide.setOnClickListener(this);
         btn_mp3.setOnClickListener(this);
         btn_tab_bar.setOnClickListener(this);
+        btn_retrofit.setOnClickListener(this);
     }
 
     @Override
@@ -122,6 +124,9 @@ public class RecyclerViewMainActivity extends AppCompatActivity implements View.
                 break;
             case R.id.btn_tab_bar:
                 intent = new Intent(RecyclerViewMainActivity.this,TabbarActivity.class);
+                break;
+            case R.id.btn_tab_retrofit:
+                intent = new Intent(RecyclerViewMainActivity.this,RetrofitTestActivity.class);
                 break;
 
         }

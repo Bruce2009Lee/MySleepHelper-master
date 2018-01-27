@@ -95,9 +95,9 @@ public class MusicPopMenuWindow extends PopupWindow {
             public void onClick(View v) {
                 dismiss();
 
-                Toast.makeText(activity,"popwindow点击了 add",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity,"popwindow点击了 add",Toast.LENGTH_SHORT).show();
 
-                /*AddPlaylistWindow addPlaylistWindow = new AddPlaylistWindow(activity,musicInfo);
+                AddPlaylistWindow addPlaylistWindow = new AddPlaylistWindow(activity,musicInfo);
                 addPlaylistWindow.showAtLocation(parentView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
                 WindowManager.LayoutParams params = activity.getWindow().getAttributes();
                 //当弹出Popupwindow时，背景变半透明
@@ -111,7 +111,7 @@ public class MusicPopMenuWindow extends PopupWindow {
                         params.alpha=1f;
                         activity.getWindow().setAttributes(params);
                     }
-                });*/
+                });
             }
         });
 

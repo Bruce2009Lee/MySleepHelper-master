@@ -118,7 +118,9 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void signIn(String email, String password) {
+
         Log.d(TAG, "signIn:" + email);
+
         if (!validateForm()) {
             return;
         }

@@ -18,10 +18,12 @@ import android.widget.TextView;
 
 import com.example.developerhaoz.sleephelper.R;
 import com.example.developerhaoz.sleephelper.database.DBManager;
+import com.example.developerhaoz.sleephelper.recyclerview.MP3PlayerActivity;
 import com.example.developerhaoz.sleephelper.recyclerview.PlaylistActivity;
 import com.example.developerhaoz.sleephelper.recyclerview.entity.PlayListInfo;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,7 +67,8 @@ public class HomeListViewAdapter extends BaseAdapter {
         if (convertView == null){
             holder = new Holder();
             convertView = LayoutInflater.from(activity).inflate(R.layout.play_list_view_item,null);
-//            holder.swipView =  (View)convertView.findViewById(R.id.play_list_content_swip_view);
+
+            holder.swipView =  (View)convertView.findViewById(R.id.play_list_content_swip_view);
             holder.contentView = (LinearLayout) convertView.findViewById(R.id.play_list_content_ll);
             holder.coverIv = (ImageView) convertView.findViewById(R.id.play_list_cover_iv);
             holder.listName = (TextView) convertView.findViewById(R.id.play_list_name_tv);
@@ -80,7 +83,7 @@ public class HomeListViewAdapter extends BaseAdapter {
             holder.listName.setText("新建歌单");
             holder.listName.setGravity(Gravity.CENTER_VERTICAL);
             holder.listCount.setVisibility(View.GONE);
-//            ((SwipeMenuLayout)holder.swipView).setSwipeEnable(false);
+            ((SwipeMenuLayout)holder.swipView).setSwipeEnable(false);
         }else {
             //展现已有的歌单列表
             PlayListInfo playListInfo = dataList.get(position);
@@ -88,7 +91,7 @@ public class HomeListViewAdapter extends BaseAdapter {
             holder.listCount.setText(playListInfo.getCount()+"首");
             holder.listName.setGravity(Gravity.BOTTOM);
             holder.listCount.setVisibility(View.VISIBLE);
-//            ((SwipeMenuLayout)holder.swipView).setSwipeEnable(true);
+            ((SwipeMenuLayout)holder.swipView).setSwipeEnable(true);
         }
 
         holder.contentView.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +108,7 @@ public class HomeListViewAdapter extends BaseAdapter {
                         public void onClick(DialogInterface dialog, int which) {
                             String name = playlistEt.getText().toString();
                             dbManager.createPlaylist(name);
-//                            updateDataList();
+                            updateDataList();
                             dialog.dismiss();
                         }
                     });
@@ -126,11 +129,49 @@ public class HomeListViewAdapter extends BaseAdapter {
                 }
             }
         });
+
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = LayoutInflater.from(activity).inflate(R.layout.dialog_delete_playlist,null);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setView(view);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbManager.deletePlaylist(dataList.get(position).getId());
+                        ((SwipeMenuLayout) holder.swipView).quickClose();
+                        dialog.dismiss();
+                        updateDataList();
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((SwipeMenuLayout) holder.swipView).quickClose();
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+
         return convertView;
     }
 
+    public void updateDataList(){
+        List<PlayListInfo> playListInfos = new ArrayList<>();
+        playListInfos = dbManager.getMyPlayList();
+        dataList.clear();
+        dataList.addAll(playListInfos);
+        notifyDataSetChanged();
+        ((MP3PlayerActivity)activity).updatePlaylistCount();
+
+    }
+
     class Holder{
-//        View swipView;
+        View swipView;
         LinearLayout contentView;
         ImageView coverIv;
         TextView listName;

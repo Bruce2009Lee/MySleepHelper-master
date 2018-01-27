@@ -14,8 +14,8 @@
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:textSize="15sp"
-        android:textColor="@color/primary_light"
-        android:visibility="visible" />
+        android:textColor="?attr/text_color"
+        android:visibility="gone" />
 
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout
         android:id="@+id/swipemenu_layout"
