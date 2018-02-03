@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,21 +11,55 @@
         android:id="@+id/send_get"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="通过id获取一个user信息"
+        android:textAllCaps="false" />
+
+    <EditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="用户ID" />
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="用户名" />
+
+    <EditText
+        android:id="@+id/user_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="send get"/>
+        android:hint="密码"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/send_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="send post"/>
+        android:text="通过id更新一个user的信息"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/send_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="通过ID删除一个user"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/send_post_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="增加一个user"
+        android:textAllCaps="false" />
 
     <TextView
         android:id="@+id/tv_content_back"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:gravity="center"
-        android:text="this is content"/>
+        android:text="this is content" />
 
 </LinearLayout>
