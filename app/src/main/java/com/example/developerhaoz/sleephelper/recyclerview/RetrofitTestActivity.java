@@ -1,7 +1,7 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developerhaoz.sleephelper.R;
-import com.example.developerhaoz.sleephelper.recyclerview.entity.Cat;
+import com.example.developerhaoz.sleephelper.recyclerview.entity.testEntity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,14 +19,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 
-public class RetrofitTestActivity extends AppCompatActivity implements View.OnClickListener{
+public class RetrofitTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = RetrofitTestActivity.class.getName();
 
-    private Button btn_get,btn_post;
+    private Button btn_get, btn_post;
     private TextView tv_content;
 
     @Override
@@ -35,7 +36,7 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         btn_get = (Button) findViewById(R.id.send_get);
         btn_post = (Button) findViewById(R.id.send_post);
         tv_content = (TextView) findViewById(R.id.tv_content_back);
@@ -47,7 +48,7 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.send_get:
                 request();
                 break;
@@ -57,26 +58,38 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void request(){
+    private void request() {
+
+        Gson gson = new GsonBuilder().create();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl("http://192.168.1.2:8080/")
                 .build();
         GetRequestInterface request = retrofit.create(GetRequestInterface.class);
-        Call<Cat> call = request.getCatByName("18");
 
-        call.enqueue(new Callback<Cat>() {
+        Call<testEntity> call = request.getUserById(1);
+
+        call.enqueue(new Callback<testEntity>() {
+
             @Override
-            public void onResponse(Call<Cat> call, Response<Cat> response) {
-                Log.e(TAG, "onResponse: " + response.body());
+            public void onResponse(Call<testEntity> call, Response<testEntity> response) {
+                Log.e(TAG, "onResponse: " + response.body().getData());
 
-                Cat catBack = response.body();
-                tv_content.setText("cat age: "+ catBack.getCatAge());
+                testEntity userBack = response.body();
+                if (0 == userBack.getCode() && null != userBack.data) {
+                    Toast.makeText(getApplication(), "user name:" + userBack.data.getName(), Toast.LENGTH_SHORT).show();
+                    tv_content.setText("user name: " + userBack.data.getName());
+                } else {
+                    Toast.makeText(getApplication(), "body 为空", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
-            public void onFailure(Call<Cat> call, Throwable t) {
-                Toast.makeText(getApplication(),"网络错误",Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<testEntity> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(getApplication(), "网络错误" + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,8 +97,7 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
 
     public interface GetRequestInterface {
 
-        //http://localhost:8080/cat/findByCatName?catName=18
-        @GET("/cat/findByCatName")
-        Call<Cat> getCatByName(@Query("catName") String catName);
+        @GET("users/{id}")
+        Call<testEntity> getUserById(@Path("id") int id);
     }
 }

@@ -23,7 +23,9 @@ import com.example.developerhaoz.sleephelper.recyclerview.widget.MyViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalMusicActivity extends PlayBarBaseActivity {
+public class
+
+LocalMusicActivity extends PlayBarBaseActivity {
 
     private static final String TAG = LocalMusicActivity.class.getName();
     public static final int SEARCH_FINISHED=1;

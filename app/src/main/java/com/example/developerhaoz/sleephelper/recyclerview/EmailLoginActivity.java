@@ -1,9 +1,9 @@
 package com.example.developerhaoz.sleephelper.recyclerview;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class EmailLoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class EmailLoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = EmailLoginActivity.class.getName();
 
@@ -39,7 +39,7 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
         initView();
     }
 
-    private void initView(){
+    private void initView() {
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -210,11 +210,11 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
 
         int i = v.getId();
         if (i == R.id.email_create_account_button) {
-          createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.email_sign_in_button) {
-          signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.sign_out_button) {
-          signOut();
+            signOut();
         } else if (i == R.id.verify_email_button) {
 //          sendEmailVerification();
         }
