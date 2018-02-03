@@ -64,13 +64,12 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
 
         String tmpUserName = userName.getText().toString();
         String tmpUserPassed = userPasswd.getText().toString();
+        String tmpUserID = userID.getText().toString();
         switch (v.getId()) {
             case R.id.send_get:
                 sendGet();
                 break;
             case R.id.send_post:
-
-                String tmpUserID = userID.getText().toString();
                 if (!TextUtils.isEmpty(tmpUserName) && !TextUtils.isEmpty(tmpUserPassed) && !TextUtils.isEmpty(tmpUserID)) {
                     sendPost(Integer.parseInt(userID.getText().toString()), tmpUserName, tmpUserPassed);
                 } else {
@@ -78,7 +77,12 @@ public class RetrofitTestActivity extends AppCompatActivity implements View.OnCl
                 }
                 break;
             case R.id.send_delete:
-                sendDelete(9);
+                if(!TextUtils.isEmpty(tmpUserID)){
+                    sendDelete(Integer.parseInt(userID.getText().toString()));
+                }else {
+                    Toast.makeText(getApplication(), "请输入id", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.send_post_add:
                 if (!TextUtils.isEmpty(tmpUserName) && !TextUtils.isEmpty(tmpUserPassed)) {
